@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+   
+
+    <link href="public/css/modern.css" rel="stylesheet">
+    <link href="public/css/theme-dark.css" rel="stylesheet">
+    <link href="public/css/modern-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/VideoGallery.css" type="text/css"/> 
+	
+	 <script type="text/javascript" src="public/js/assets/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="public/js/assets/jquery.mousewheel.min.js"></script>
+
+    <script type="text/javascript" src="public/js/modern/dropdown.js"></script>
+    <script type="text/javascript" src="public/js/modern/accordion.js"></script>
+    <script type="text/javascript" src="public/js/modern/buttonset.js"></script>
+    <script type="text/javascript" src="public/js/modern/carousel.js"></script>
+    <script type="text/javascript" src="public/js/modern/input-control.js"></script>
+    <script type="text/javascript" src="public/js/modern/pagecontrol.js"></script>
+    <script type="text/javascript" src="public/js/modern/rating.js"></script>
+    <script type="text/javascript" src="public/js/modern/slider.js"></script>
+    <script type="text/javascript" src="public/js/modern/tile-slider.js"></script>
+    <script type="text/javascript" src="public/js/modern/tile-drag.js"></script>
+
+    <script type="text/javascript" src="public/js/assets/github.info.js"></script>
+    <script type="text/javascript" src="public/js/assets/google-analytics.js"></script>
+    <script type="text/javascript" src="public/js/google-code-prettify/prettify.js"></script>
+    <script src="public/js/sharrre/jquery.sharrre-1.3.4.min.js"></script>
+
+	
+	
+	
+	<!-- chuyen qua -->
+	<link rel="stylesheet" type="text/css" href="http://cdn.kinesis.io/kinesis.css">
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	
+	
+    <title>Broadcast Controller</title>
+    <style>
+        body {
+            background: #1d1d1d;
+        }
+    </style>
+
+	<script>
+		"use strict";
+		var controller = null;
+		var para="";
+		window.onload = function() {
+		
+			var connection = new WebSocket('ws://localhost:8888');
+			if (connection == null)
+				connection.onopen = function () {  
+			};
+			
+			connection.onerror = function (error) {
+			};
+			
+			var isAllReadyFlag=0;
+			var isCurVideoFlag="";
+			var userCount=0;
+			var time_interval = 5000;
+			var myTimer=null;
+			var myTimeout=null;
+			var video = $_("video");
+			
+
+			video.addEventListener("durationchange", function() {
+				//alert("durationchange");
+				video.pause();
+				connection.send("pause " + video.currentTime);
+				//alert("duration change");
+			}, false);
+			
+			video.addEventListener("timeupdate", function() {
+			}, false);
+			
+			video.addEventListener('play', function() {
+			//resetTimer();
+			window.clearInterval(myTimer);
+				window.clearTimeout(myTimeout);
+				if(isAllReadyFlag>0){
+				//if(0==0){
+					myTimeout=setTimeout(function(){connection.send("timestamp " + video.currentTime)},0);
+					myTimer=setInterval(function(){connection.send("timestamp " + video.currentTime);},time_interval);
+					//connection.send("timestamp " + video.currentTime);
+				}else{
+					alert("Not ready for all users");
+				}
+			}, false);
+			
+			
+			function resetTimer(){
+				window.clearInterval(myTimer);
+				window.clearTimeout(myTimeout);
+			};
+			
+			video.addEventListener("pause", function() {
+				// Delete the time interval when video stop
+				connection.send("pause "+video.currentTime);
+				window.clearInterval(myTimer);
+				window.clearTimeout(myTimeout);
+			}, false);
+			
+			video.addEventListener("ended", function() {
+				// Delete the time interval when video stop
+				window.clearInterval(myTimer);
+				window.clearTimeout(myTimeout);	
+			}, false);
+			
+			video.addEventListener("canplay", function() {
+				connection.send("canplay "+video.currentTime);
+			}, false);
+			
+			
+			// most important part - incoming messages
+			connection.onmessage = function (message) {
+				var matches;
+				matches = message.data.split(/\s/g);
+				switch (matches[0]){
+					case "control":
+						$_("#controller").innerHTML = matches[1];
+						break;
+					case "userCount":
+						userCount= parseInt(matches[1]);
+						userCount=userCount-1;
+						document.getElementById("userCount").innerHTML = userCount;
+						break;
+					case "isAllReady":			
+						isAllReadyFlag=parseInt(matches[1]);
+						break;
+					case "pause":
+						video.currentTime = parseInt(matches[1]);
+						video.pause();
+						break;;
+					case "timestamp":
+						if (iAmControlling())
+							return;
+						break;
+				}
+			};
+			
+			var b = document.querySelectorAll('#chooser img');
+
+			for(var i = 0; i<b.length; i++) {
+				b[i].addEventListener('click',function(e) {
+					/* kludge to get Safari to behave... */
+					resetCheck();
+					addItem(e);
+					var targ = e.target;
+					var parentDiv = targ.parentNode;
+					parentDiv.setAttribute("class","selected tile-content");
+					if (targ.tagName != 'IMG') { targ = targ.parentNode; }
+					var temp = targ.getAttribute('data-file')+'.mp4';
+					if(isCurVideoFlag!=temp){
+						// reset value flag ready
+						resetTimer();
+						isAllReadyFlag=0;
+						isCurVideoFlag=temp;
+						var test=targ.getAttribute('data-file');
+						
+						//video.src = targ.getAttribute('data-file')+'.mp4';
+						//temp=temp.replace("videos","videos_2"); 
+						//alert(test);
+						connection.send("control " + test);
+						video.src = getLink(test);
+						//autobuffer=true
+						video.setAttribute("autobuffer","true");
+						connection.send("summary " + para);
+						//alert(para);
+						$_("#controller").innerHTML="Channel "+  targ.getAttribute('data-file');
+						video.load();
+						/* small kludge to force video element to fire the "paused" event correctly and change the play/pause button */
+					}else{
+						var al = window.open('The same current video is playing or loaded', 'test'); 
+						window.setTimeout(function() {al.close()}, 2000);
+					}
+				},true);
+			}
+			
+			function isAllReady(){
+				return(isAllReadyFlag>0);
+			}
+			
+			function iAmControlling() {
+			  return 1==1;
+			}
+		
+		};
+
+		function $_(sel) {
+		  return document.querySelector(sel);
+		};
+	</script>
+	
+    <script>
+        function Resize(){
+            var tiles_area = 0;
+            $(".tile-group").each(function(){
+                tiles_area += $(this).outerWidth() + 80;
+            });
+
+            $(".tiles").css("width", 120 + tiles_area + 20);
+
+            $(".page").css({
+                height: $(document).height() - 20,
+                width: $(document).width()
+            });
+        }
+
+		function resetCheck(){
+			var b = document.querySelectorAll('#chooser img');
+			for(var i = 0; i<b.length; i++) {
+				var targ = b[i];
+				var parentDiv = targ.parentNode;
+				parentDiv.setAttribute("class","tile-content");
+			}
+		}
+		
+		function getLink(temp){
+			var link1="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/5/raw.mp4";
+			var link2="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/2/raw.mp4";
+			var link3="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/3/raw.mp4";
+			var link4="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/4/raw.mp4";
+			
+			
+
+			
+			switch(temp){
+				case "videos/garden1":
+					return link1;
+				case "videos/garden2":
+					return link2;
+				case "videos/fridge":
+					return link3;
+				case "videos/windowsill":
+					return link4;
+			}
+		}
+		
+		
+		function addItem(e){
+			var targ = e.target;
+			var temp = targ.getAttribute('data-file');
+				
+			var header2=temp;
+			
+			//var header5="";
+			
+			switch(temp){
+				case "videos/garden1":
+				//	header5="Small";
+					para="Size: 320 x 180 100kbit mp4";
+					break;
+				case "videos/garden2":
+					//header5="Average";
+					para="Size: 640x360 800kbit mp4";
+					break;
+				case "videos/fridge":
+					//header5="Fair";
+					para="Size: 1280x720 1,4Mbit mp4";
+					break;
+				case "videos/windowsill":
+					//header5="Biggest";
+					para="Size: 1920x1080 2,7Mbit mp4";
+					break;
+			}
+			
+			document.getElementById("header2").innerHTML=header2;
+			//document.getElementById("header5").innerHTML=header5;
+			document.getElementById("para").innerHTML=para;
+		}
+		
+		
+		
+		
+		
+        
+        
+    </script>
+</head>
+<body >
+<div class="tiviui">
+	<img style="height:760px;width:1260px;" src="images/tv.jpg" alt="tv"/>
+	
+	
+    <div class="channel1">
+		<div>
+			<h3><span id="controller" style="visibility:hidden;">---</span></h3>
+			<h3>Total User Count: <span id="userCount"></span></h3>
+
+		</div>
+	</div>
+				
+	<div   class="video1">
+		<div >
+			<video   id="video" style="height:450px;" src="videos/windowsill.mp4" controls="controls" ></video>
+		</div>
+	</div>
+
+	<div class="detail1">
+		<h2 id="header2" >---</h2>
+		
+		<h4 id="para" >
+			...
+		</h4>
+	</div>   	
+	
+	
+	
+    
+	<div id="chooser" class="channelbutton">
+		<div class="tile image outline-color-green" >
+			<div  class="tile-content">
+				
+					<img id="windowsill" data-file="videos/windowsill" src="images/windowsill.jpg" alt="" class="interactive" >	
+				
+			</div>
+		</div>
+		
+		<div class="tile image outline-color-green">
+			<div class="tile-content">
+				<img id="garden1" data-file="videos/garden1" src="images/garden1.jpg" alt="" class="interactive">
+			</div>
+		</div>
+		<div class="tile image outline-color-green">
+			<div class="tile-content">
+				<img id="fridge" data-file="videos/fridge" src="images/fridge.jpg" alt="" class="interactive">
+			</div>
+		</div>
+		<div class="tile image outline-color-green">
+			<div class="tile-content">
+				<img id="garden2" data-file="videos/garden2" src="images/garden2.jpg" alt="" class="interactive">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+ <!-- kinesis js sdk -->
+    <script src="http://cdn.kinesis.io/kinesis-js-sdk.min.js"></script>
+<script src="js/jquery-1.6.4.min.js"></script>
+<!--<script src="js/jquery.mousewheel.js"></script>-->
+	
+<!--<script src="js/play-stop.js"></script>-->
+
+	<script>
+		// delegate method for swipe gesture call to action; depending upon the gesture corresponding functions are fired.
+		function swipeControl(gesture) {
+		  switch(gesture){
+			case leftGesture:
+				video.play();
+				break;
+		  }
+		};
+
+		function movement(position){
+			if(position.z < -0.4){
+				video.pause();
+			}
+				  
+			if(position.z > 0){
+				if(isAllReadyFlag>0){
+					video.play();
+				 }
+				else{
+					alert("Not ready for all users");
+				}
+			}
+		}
+
+
+		var kinesis = new Kinesis; // initialize kinesis
+		 Kinesis.cursor = movement;
+		// start adding gestures from here //
+
+		// create swipe left gesture
+		var leftGesture         = new SwipeGestureListener("myswipeLeft");
+		// call to action for swipe left
+		leftGesture.toFire      = swipeControl;
+		// area within which the swipe left will be recognized; values in percentage(%)
+		leftGesture.bounds      = {min: {x: 80, y: 0, z: 0}};
+		// allowed joints for gesture
+		leftGesture.joints      = [JointTypes.JointTypeHandRight]; // right hand
+		// allowed direction for gesture
+		leftGesture.directions  = [GestureDirections.GestureDirectionLeft]; // left
+
+		// create swipe right gesture
+		var rightGesture        = new SwipeGestureListener("myswipeRight");
+		// call to action for swipe left
+		rightGesture.toFire     = swipeControl;
+		// area within which the swipe left will be recognized; values in percentage(%)
+		rightGesture.joints     = [JointTypes.JointTypeHandLeft];
+		// allowed joints for gesture
+		rightGesture.bounds     = {max: {x: 20, y: 100, z: 100}};
+		// allowed direction for gesture
+		rightGesture.directions = [GestureDirections.GestureDirectionRight];
+
+		kinesis.addGesture(leftGesture);  // insert leftGesture to kinesis
+		kinesis.addGesture(rightGesture); // insert rightGesture to kinesis
+    </script>
+</body>
+</html>

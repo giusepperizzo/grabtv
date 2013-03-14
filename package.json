@@ -1,0 +1,32 @@
+{
+  "author": "PHAN Thanh Trung (Email: phant@eurecom.fr)",
+  "responsible_prof": "Raphael Troncy (Email: raphael.troncy@eurecom.fr)",
+  "supervisor_1": "Jose-Luis Redondo-Garcia (Email: Jose-Luis.Redondo-Garcia@eurecom.fr)",
+  "supervisor_2": "Giuseppe Rizzo (Email: Giuseppe.Rizzo@eurecom.fr)",
+  "name": "Grab TV show and share it",
+  "description": "The semester project LinkedTV in Eurecom",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/phanthanhtrung86/grabTV.git"
+  },
+  "html": {
+    "video-controller": "The html file plays as the controller role",
+	"video-client": "The html file plays as the client role"
+  },
+  "engines": {
+    "nodejs": "v0.8.15"
+  },
+  "servers": {
+    "server-controller": "Transfer timestamps from controller to all clients",
+	"server-html": "Rendering the controller html file and client html file"
+  },
+  "dependencies": {
+    "express" : "3.0.3",
+    "http": "0.0.0",
+    "now": "",
+	"socket.io": "0.9.11",
+	"websocket": "1.0.7",
+	"ws": "0.4.22"
+  }
+}

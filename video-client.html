@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+
+    <link href="css/modern.css" rel="stylesheet">
+    <link href="css/theme-dark.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/VideoGallery.css" type="text/css"/> 
+	
+    <script src="public/js/assets/jquery-1.8.2.min.js"></script>
+    <script src="public/js/assets/google-analytics.js"></script>
+    <script src="public/js/assets/jquery.mousewheel.min.js"></script>
+    <script src="public/js/assets/github.info.js"></script>
+    <script src="public/js/modern/tile-slider.js"></script>
+    <script src="public/js/modern/tile-drag.js"></script>
+
+
+ 
+  
+	
+	
+	
+    <title>Client</title>
+
+    <style>
+        body {
+            background: #1d1d1d;
+        }
+    </style>
+
+    <script>
+        function Resize(){
+            var tiles_area = 0;
+            $(".tile-group").each(function(){
+                tiles_area += $(this).outerWidth() + 80;
+
+            });
+
+            $(".tiles").css("width", 120 + tiles_area + 20);
+
+            $(".page").css({
+                height: $(document).height() - 20,
+                width: $(document).width()
+            });
+        }
+
+        function AddMouseWheel(){
+            $("body").mousewheel(function(event, delta){
+                var scroll_value = delta * 50;
+                if (jQuery.browser.webkit) {
+                    this.scrollLeft -= scroll_value;
+                } else {
+                    document.documentElement.scrollLeft -= scroll_value;
+                }
+                return false;
+            });
+        }
+
+        $(function(){
+            Resize();
+            AddMouseWheel();
+        })
+    </script>
+	
+	
+	
+	<script>
+		"use strict";
+		
+		var controller = null;
+		var isAllReadyFlag=false;
+		var threshold=0.4;
+		var para=" ";
+		var sum=0;
+		var countsent=0;
+		window.onload = function() {
+				//drawScreen();
+				//setInterval(drawScreen, 33);
+			
+			var connection = new WebSocket('ws://localhost:8888');
+			if (connection == null)
+				alert("Message is sent null..."+connection);
+			connection.onopen = function () {  
+			};
+			
+			connection.onerror = function (error) {
+				// just in there were some problems with conenction...
+				alert("error.."+error.toString());
+			};
+			
+			var video = $_("video");
+			var userCount;
+			video.addEventListener("timeupdate", function() {
+			}, true);
+			
+			video.addEventListener("pause", function() {
+				sum=0;
+				countsent=0;
+			}, true);
+			
+			// Script to be run when the media actually has enough buffer
+			
+			
+			video.addEventListener("canplay", function() {
+				connection.send("canplay "+video.currentTime);
+			}, true);
+				
+			video.addEventListener("ended", function() {
+				var average= sum/countsent;
+				//alert("Average latency:"+average);
+			}, false);
+		
+		
+			var container = document.getElementById('myList');
+		 
+		 
+		 
+			function getLink(temp){
+				var link1="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/5/raw.mp4";
+				var link2="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/2/raw.mp4";
+				var link3="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/3/raw.mp4";
+				var link4="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/4/raw.mp4";
+				
+				//http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/3/raw.mp4
+				
+				switch(temp){
+					case "videos/garden1":
+						return link1;
+					case "videos/garden2":
+						return link2;
+					case "videos/fridge":
+						return link3;
+					case "videos/windowsill":
+						return link4;
+				}
+			}
+			connection.onmessage = function (message) {  
+		
+				var matches;
+				matches = message.data.split(/\s/g);
+				var new_element = document.createElement('li');
+				var bg_color="bg-color-pinkDark fg-color-white";
+				var img_src="images/timestamp_icon.jpg";
+				switch (matches[0]){
+					case "control":
+						bg_color="bg-color-green fg-color-white";
+						var img_src="images/controller_icon.jpg";
+						break;	
+					case "userCount":
+						bg_color="bg-color-green fg-color-white";
+						var img_src="images/count_icon.jpg";
+						break;
+					case "pause":
+						bg_color="bg-color-green fg-color-white";
+						var img_src="images/pause_icon.jpg";
+						break;
+					case "timestamp":
+						bg_color="bg-color-green fg-color-white";
+						var img_src="images/timestamp_icon.jpg";
+						break;
+					
+				}
+				
+				
+				
+				
+				
+				var main_content=matches[1];
+				
+				switch (matches[0]){
+					case "control":
+						//alert(matches[1]);
+						$_("#controller").innerHTML = matches[1];
+						var link=getLink(matches[1]);
+						//video.src = matches[1];
+						video.src = link;
+						video.setAttribute("autobuffer","true");
+						video.load();
+						sum=0;
+						countsent=0;
+						//progressUpdate(true);
+						break;	
+					case "userCount":
+						userCount=parseInt(matches[1]);
+						userCount=userCount-1;
+						document.getElementById("userCount").innerHTML = userCount;
+						main_content=" "+userCount;
+						break;
+					case "pause":
+						video.pause();
+						video.currentTime = matches[1];
+						break;
+					case "summary":
+						//alert(matches)
+						//alert(matches[2])
+						//alert(para);
+						para="";
+						for(var index=1;index<matches.length;index++){
+							para+=" "+matches[index];
+						}
+						
+						//para = matches;
+						//document.getElementById("summary").value=" ";
+						document.getElementById("summary").innerHTML = para;
+						break;
+					case "timestamp":
+						//alert(""+matches[1]);
+						var estimatedTimeOnMaster = parseFloat(matches[1]);
+						var curTime=parseFloat(video.currentTime);
+						sum+=Math.abs(estimatedTimeOnMaster-curTime);
+						countsent++;
+						if (Math.abs(estimatedTimeOnMaster-curTime)>threshold){
+							video.currentTime = estimatedTimeOnMaster;
+							main_content="Master:"+(estimatedTimeOnMaster)+" Cur:"+(curTime)+" Threshold: "+threshold +" NotSync - Sync";
+							bg_color="bg-color-red fg-color-white";
+						}else{
+							main_content="Master:"+(estimatedTimeOnMaster)+" Cur:"+(curTime)+" Threshold: "+threshold +" Sync - Sync";
+						}
+						if (video.paused){
+							video.play();
+						}
+						break;
+				}
+				new_element.setAttribute("class",bg_color);
+				
+				new_element.setAttribute("style","height:100%; width:240px;display:inline-block;");
+				//list-style-type:none;
+						
+				var div1=document.createElement('div');
+				div1.setAttribute("class","icon");
+				var image1=document.createElement('img');
+				image1.setAttribute("src",img_src);
+				div1.appendChild(image1);
+				
+				var div2=document.createElement('div');
+				div2.setAttribute("class","data");
+				var header4=document.createElement('h4');
+				header4.setAttribute("class","fg-color-white");
+				
+				header4.innerHTML=matches[0];
+				
+				div2.appendChild(header4);
+				
+				var paragraph=document.createElement('p');
+				paragraph.innerHTML=main_content;
+				div2.appendChild(paragraph);
+				
+				
+				new_element.appendChild(div1);
+				new_element.appendChild(div2);
+				new_element.setAttribute("float","left");
+				
+				container.insertBefore(new_element, container.firstChild);
+			  };
+	};
+	
+	
+    function drawScreen() {
+	//
+        var video = document.getElementById('video');
+        var cvas = document.getElementById('bubble-canvas');
+        //if (video.paused || video.ended) return;
+        var ctx = cvas.getContext('2d');
+        ctx.save();
+		
+        //ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, cvas.width, cvas.height);
+		var image = new Image();
+		/*
+		image.onload = function(){
+        ctx.drawImage(image,0,0);
+		};*/
+		image.src = "images/TV.jpg";
+		
+		ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, cvas.width, cvas.height);
+		//ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 30, 30, cvas.width-60, cvas.height-70);
+        ctx.restore();
+		//alert("haha");
+    }
+    
+	
+	
+	function $_(sel) {
+	  return document.querySelector(sel);
+	}
+</script>
+
+</head>
+<body >
+
+<div class="container" id="four">
+    <div class="borderline">	
+				
+	<div class="channel bg-color-blueDark">
+		<div class="tile-content">
+			<h3><span id="controller" style="visibility:hidden;">---</span></h3>
+			<h3>Total User Count: <span id="userCount"></span></h3>
+		</div>
+	</div>
+	<div  class="list bg-color-orange" >
+		<ul id="myList" class="listview" style="overflow:auto;">
+			
+		</ul>
+	</div>
+	
+	<div  class="video  outline-color-green">   
+			<div >
+				<video style="width: 100%; height: 440px"   id="video" src="" controls="controls"  ></video>
+			</div>
+	</div>
+				
+				
+	<div class="detail bg-color-green" >
+		<div class="tile-content">
+			<h3 id="header2" >Channel Summary</h3>
+			<h4 id="summary" >
+				----
+			</h4>
+		</div>   
+	</div>
+	<div class="applebutton">
+		<img style="width:50px;height=50px;" src="images/applebutton.jpg" alt="apple button"/>
+	</div>
+	
+	
+</div>
+		<div class="camera">
+		<img style="width:30px;height=30px;" src="images/camera.jpg" alt="camera"/>
+	</div>
+</div>
+
+
+</body>
+</html>
