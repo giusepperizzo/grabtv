@@ -1,336 +1,951 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    
+	<title>Client</title>
 
-    <link href="css/modern.css" rel="stylesheet">
-    <link href="css/theme-dark.css" rel="stylesheet">
-    <link href="css/modern-responsive.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/VideoGallery.css" type="text/css"/> 
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-touch-fullscreen" content="yes" />
 	
-    <script src="public/js/assets/jquery-1.8.2.min.js"></script>
+	<!-- fullscreen when it runs -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
+
+	<link rel="stylesheet" href="public/css/VideoGallery.css" type="text/css" />
+	<link rel="stylesheet" href="public/css/general_foundicons.css">
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+	<script src="public/js/assets/dbpediacache.js"></script>
+	<script src="public/js/assets/mediafindercache.js"></script>
+	<script src="public/js/assets/fastblur.js"></script>
+
+	<script src="public/js/assets/jquery-1.9.1.min.js"></script>
+	<script src="public/js/assets/underscore-min.js"></script>
+    <script src="http://www.google.com/jsapi?key=ABQIAAAA9Q8LhJlzspnZqXH-56zU4BQqF5vs-amCUIieOBLhZ3cTA_oZXRQmscVz1cKwL_MCFOqnCKisRu20hQ" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="public/js/assets/sparqlquery.js"></script>
+
+
+	<script src="public/js/scroller/Raf.js"></script>
+	<script src="public/js/scroller/Animate.js"></script>
+	<script src="public/js/scroller/Scroller.js"></script>
+	<script src="public/js/scroller/render.js"></script>
+<!-- 
     <script src="public/js/assets/google-analytics.js"></script>
     <script src="public/js/assets/jquery.mousewheel.min.js"></script>
     <script src="public/js/assets/github.info.js"></script>
     <script src="public/js/modern/tile-slider.js"></script>
     <script src="public/js/modern/tile-drag.js"></script>
+ -->
 
-
- 
-  
-	
-	
-	
-    <title>Client</title>
-
-    <style>
-        body {
-            background: #1d1d1d;
-        }
-    </style>
-
-    <script>
-        function Resize(){
-            var tiles_area = 0;
-            $(".tile-group").each(function(){
-                tiles_area += $(this).outerWidth() + 80;
-
-            });
-
-            $(".tiles").css("width", 120 + tiles_area + 20);
-
-            $(".page").css({
-                height: $(document).height() - 20,
-                width: $(document).width()
-            });
-        }
-
-        function AddMouseWheel(){
-            $("body").mousewheel(function(event, delta){
-                var scroll_value = delta * 50;
-                if (jQuery.browser.webkit) {
-                    this.scrollLeft -= scroll_value;
-                } else {
-                    document.documentElement.scrollLeft -= scroll_value;
-                }
-                return false;
-            });
-        }
-
-        $(function(){
-            Resize();
-            AddMouseWheel();
-        })
-    </script>
-	
-	
-	
 	<script>
 		"use strict";
 		
-		var controller = null;
-		var isAllReadyFlag=false;
-		var threshold=0.4;
-		var para=" ";
-		var sum=0;
-		var countsent=0;
-		window.onload = function() {
-				//drawScreen();
-				//setInterval(drawScreen, 33);
-			
-			var connection = new WebSocket('ws://localhost:8888');
-			if (connection == null)
-				alert("Message is sent null..."+connection);
-			connection.onopen = function () {  
-			};
-			
-			connection.onerror = function (error) {
-				// just in there were some problems with conenction...
-				alert("error.."+error.toString());
-			};
-			
-			var video = $_("video");
-			var userCount;
-			video.addEventListener("timeupdate", function() {
-			}, true);
-			
-			video.addEventListener("pause", function() {
-				sum=0;
-				countsent=0;
-			}, true);
-			
-			// Script to be run when the media actually has enough buffer
-			
-			
-			video.addEventListener("canplay", function() {
-				connection.send("canplay "+video.currentTime);
-			}, true);
-				
-			video.addEventListener("ended", function() {
-				var average= sum/countsent;
-				//alert("Average latency:"+average);
-			}, false);
-		
-		
-			var container = document.getElementById('myList');
-		 
-		 
-		 
-			function getLink(temp){
-				var link1="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/5/raw.mp4";
-				var link2="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/2/raw.mp4";
-				var link3="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/3/raw.mp4";
-				var link4="http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/4/raw.mp4";
-				
-				//http://stream4.noterik.com/progressive/stream4/domain/linkedtv/user/avro/video/5/rawvideo/3/raw.mp4
-				
-				switch(temp){
-					case "videos/garden1":
-						return link1;
-					case "videos/garden2":
-						return link2;
-					case "videos/fridge":
-						return link3;
-					case "videos/windowsill":
-						return link4;
+		$(function() {
+
+			function getUrl(videoNumber, options) {
+				$.extend({fromWeb: true}, options);
+				if (options.fromWeb) {
+					return "http://stream6.noterik.com/progressive/stream6/domain/linkedtv/user/rbb/video/" + videoNumber + "/rawvideo/4/raw.mp4";
+				} else {
+					return "videos/video" + videoNumber + ".mp4";
 				}
 			}
-			connection.onmessage = function (message) {  
-		
-				var matches;
-				matches = message.data.split(/\s/g);
-				var new_element = document.createElement('li');
-				var bg_color="bg-color-pinkDark fg-color-white";
-				var img_src="images/timestamp_icon.jpg";
-				switch (matches[0]){
-					case "control":
-						bg_color="bg-color-green fg-color-white";
-						var img_src="images/controller_icon.jpg";
-						break;	
-					case "userCount":
-						bg_color="bg-color-green fg-color-white";
-						var img_src="images/count_icon.jpg";
-						break;
-					case "pause":
-						bg_color="bg-color-green fg-color-white";
-						var img_src="images/pause_icon.jpg";
-						break;
-					case "timestamp":
-						bg_color="bg-color-green fg-color-white";
-						var img_src="images/timestamp_icon.jpg";
-						break;
+
+
+			function showActionInfo(action, value) {
+				$("#actions").prepend(
+					$("<li>")
+						.html(actionInfoTemplate({
+							action: action,
+							value: value
+						}))
+				);
+			}
+
+
+			function friendlyTime(time) {
+				var min = parseInt(time / 60, 10),
+					sec = parseInt(time % 60, 10);
+
+				return min + ":" + sec;
+			}
+
+
+			function fetchChapterData(currentChapter, callback) {
+				// get the data for the chapter
+				sparqlTv.makeQuery(_.template($(".templates .sparql .entities").html())({ chapterLabel: currentChapter["rdfs:label"] }), function(entities) {
 					
+					var tempHash;
+
+					entities = _.filter(entities, function(d) {
+						return (d["owl:sameAs"] !== "http://dbpedia.org/resource/Fake"
+							&& /^http/.test(d["owl:sameAs"]));
+					});
+
+					currentChapter.entitiesTime = entities;
+
+					// unique collection
+					tempHash = entities.reduce(function(hash, d) {
+						hash[d["owl:sameAs"]] = d;
+						return hash;
+					}, {});
+
+					currentChapter.entities = _.toArray(tempHash);
+
+					// _.each(currentChapter.entities, function(d) {
+					// 	console.log(d["rdfs:label"], d["nsa:temporalStart"], d["nsa:temporalEnd"]);
+					// });
+					callback && callback(currentChapter);
+				});
+			}
+
+
+			function renderChapter(chapter, currentTime) {
+				if (!chapter) { return false; }
+				$chapter
+					.css({
+						"-webkit-transform": "translateX(" + Number(chapter["nsa:temporalStart"] / duration * width) + "px)",
+						"width": Number((chapter["nsa:temporalEnd"] - chapter["nsa:temporalStart"]) * width / duration) + "px"
+					})
+					.find("span").text(chapter["rdfs:label"].toUpperCase());
+			}
+
+
+			function renderTimestamp(currentTime) {
+				$timestamp
+					.css({ "-webkit-transform": "translateX(" + Number(currentTime / duration * width) + "px)"})
+					.text(friendlyTime(currentTime));
+			}
+
+
+			function renderBars(chapter) {
+				if (!chapter) { return false; }
+				var duration = chapter["nsa:temporalEnd"] - chapter["nsa:temporalStart"],
+					xCoords = [];
+				$bars.html("");
+				chapter.entities && chapter.entities.forEach(function(entity) {
+					var xCoord = (Number(entity["nsa:temporalStart"] - chapter["nsa:temporalStart"]) / duration * width),
+						lower = _.some(xCoords, function(d) {
+								return !(xCoord - 50 > d);
+							});
+
+					xCoords.push(xCoord);
+
+					// TODO HARDCODED!!!
+					if (entity["rdfs:label"] === "Roten Rathaus" || entity["rdfs:label"] === "Tina Dietze" ) {
+						lower = false;
+					}
+
+					$("<div />")
+						.addClass("bar " + entity["dc:type"].toLowerCase())
+						.text(entity["rdfs:label"])
+						.css({
+							"-webkit-transform": "translateX(" + xCoord + "px) translateY(" + (lower ? 15 : 0) + "px)"
+							// "width": Number((entity["nsa:temporalEnd"] - entity["nsa:temporalStart"]) * width / duration) + "px"
+						})
+						.appendTo($bars);
+				});
+			}
+
+
+			function renderSmallMap(coords) {
+				return "https://maps.googleapis.com/maps/api/staticmap?center=" + coords[0] + "," + coords[1] + "&zoom=13&size=457x120&sensor=false&key=ABQIAAAA9Q8LhJlzspnZqXH-56zU4BQqF5vs-amCUIieOBLhZ3cTA_oZXRQmscVz1cKwL_MCFOqnCKisRu20hQ";
+			}
+
+
+			function initMedia(selector, label) {
+
+				var mf = mediafinderData[label];
+					window.njanja = mf;
+	
+  				console.log(label);
+  				console.log(mf);
+
+				if (mf) {
+
+					$(selector).html(
+						"<ul id=\"thumbs\">" +
+						mediafinderData[label].microposts.map(function(micropost) {
+							return '<li><img src="' + micropost.mediaItem.posterUrl + '" /></li>';
+						}).join("\n") +
+						"</ul>"
+					);
+
+			      // $.ajax({
+			      //   url: "http://mediafinder.eurecom.fr/api/search/" + mf.id,
+			      //   dataType: 'json',
+			      //   // jsonp: 'callback',
+			      //   success: function( json ) {
+			      //     if ( json ) {
+			      //     	console.log(111)
+			      //       console.log(json);
+			      //       json.microposts
+			      //       $(selector).html( json.microposts.mediaItem.posterUrl.map(function(thumb) {
+			      //       	return '<img src="' + thumb + '" />';
+			      //       }).join("<br />"))
+			      //     }
+			      //   },
+			      //   error: function(err) { console.warn(err); }
+			      // });
+
 				}
-				
-				
-				
-				
-				
-				var main_content=matches[1];
-				
-				switch (matches[0]){
-					case "control":
-						//alert(matches[1]);
-						$_("#controller").innerHTML = matches[1];
-						var link=getLink(matches[1]);
-						//video.src = matches[1];
-						video.src = link;
-						video.setAttribute("autobuffer","true");
-						video.load();
-						sum=0;
-						countsent=0;
-						//progressUpdate(true);
-						break;	
-					case "userCount":
-						userCount=parseInt(matches[1]);
-						userCount=userCount-1;
-						document.getElementById("userCount").innerHTML = userCount;
-						main_content=" "+userCount;
-						break;
-					case "pause":
-						video.pause();
-						video.currentTime = matches[1];
-						break;
-					case "summary":
-						//alert(matches)
-						//alert(matches[2])
-						//alert(para);
-						para="";
-						for(var index=1;index<matches.length;index++){
-							para+=" "+matches[index];
-						}
-						
-						//para = matches;
-						//document.getElementById("summary").value=" ";
-						document.getElementById("summary").innerHTML = para;
-						break;
-					case "timestamp":
-						//alert(""+matches[1]);
-						var estimatedTimeOnMaster = parseFloat(matches[1]);
-						var curTime=parseFloat(video.currentTime);
-						sum+=Math.abs(estimatedTimeOnMaster-curTime);
-						countsent++;
-						if (Math.abs(estimatedTimeOnMaster-curTime)>threshold){
-							video.currentTime = estimatedTimeOnMaster;
-							main_content="Master:"+(estimatedTimeOnMaster)+" Cur:"+(curTime)+" Threshold: "+threshold +" NotSync - Sync";
-							bg_color="bg-color-red fg-color-white";
-						}else{
-							main_content="Master:"+(estimatedTimeOnMaster)+" Cur:"+(curTime)+" Threshold: "+threshold +" Sync - Sync";
-						}
-						if (video.paused){
-							video.play();
-						}
-						break;
+			}
+
+			function renderMap(selector, coords) {
+
+				var myLatlng = new google.maps.LatLng(coords[0], coords[1]),
+					mapOptions = {
+						zoom: 16,
+						center: myLatlng,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					},
+					map = new google.maps.Map($(selector)[0], mapOptions);
+
+					// BUG disapears shortly after it appears!
+					// var marker = new google.maps.Marker({
+					// 	position: myLatlng,
+					// 	map: map,
+					// 	animation: google.maps.Animation.DROP
+					// });
+
+			}
+
+			function colonToUnderscore(obj) {
+				return _.reduce(obj, function(combine, value, property) {
+					if (property.indexOf("http://") !== 0) {
+						combine[property.replace(":", "__")] = value;
+					}
+					return combine;
+				}, {});
+			}
+
+
+			function initPopup(name, callback) {
+				var $popup = $("." + name + ".popup"),
+					$buttonBack = $("." + name + ".popupBack");
+
+				if (!$popup.length) {
+					$popup = $("<div />")
+						.addClass(name + " popup hide")
+						.appendTo("body");
+
+					$buttonBack = $("<div />")
+						.addClass(name + " popupBack hide")
+						.text("back")
+						.appendTo("body")
+						.on("click", function() {
+							// $popup.addClass("hide");
+							// $buttonBack.addClass("hide");
+							removePopup();
+						});
 				}
-				new_element.setAttribute("class",bg_color);
-				
-				new_element.setAttribute("style","height:100%; width:240px;display:inline-block;");
-				//list-style-type:none;
-						
-				var div1=document.createElement('div');
-				div1.setAttribute("class","icon");
-				var image1=document.createElement('img');
-				image1.setAttribute("src",img_src);
-				div1.appendChild(image1);
-				
-				var div2=document.createElement('div');
-				div2.setAttribute("class","data");
-				var header4=document.createElement('h4');
-				header4.setAttribute("class","fg-color-white");
-				
-				header4.innerHTML=matches[0];
-				
-				div2.appendChild(header4);
-				
-				var paragraph=document.createElement('p');
-				paragraph.innerHTML=main_content;
-				div2.appendChild(paragraph);
-				
-				
-				new_element.appendChild(div1);
-				new_element.appendChild(div2);
-				new_element.setAttribute("float","left");
-				
-				container.insertBefore(new_element, container.firstChild);
-			  };
-	};
-	
-	
-    function drawScreen() {
-	//
-        var video = document.getElementById('video');
-        var cvas = document.getElementById('bubble-canvas');
-        //if (video.paused || video.ended) return;
-        var ctx = cvas.getContext('2d');
-        ctx.save();
-		
-        //ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, cvas.width, cvas.height);
-		var image = new Image();
-		/*
-		image.onload = function(){
-        ctx.drawImage(image,0,0);
-		};*/
-		image.src = "images/TV.jpg";
-		
-		ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, cvas.width, cvas.height);
-		//ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 30, 30, cvas.width-60, cvas.height-70);
-        ctx.restore();
-		//alert("haha");
-    }
-    
-	
-	
-	function $_(sel) {
-	  return document.querySelector(sel);
-	}
-</script>
+
+				_.delay(function() {
+					$popup.removeClass("hide");
+					$buttonBack.removeClass("hide");
+					_.delay(function() {
+						$popup.addClass("normal");
+					}, 500);
+				}, 300);
+
+				callback && callback();
+			}
+
+
+			function removePopup() {
+				var $popup = $(".popup");
+				$popup.removeClass("normal");
+				_.delay(function() {
+					$popup.addClass("hide");
+					_.delay(function() {
+						$popup.remove();
+						$(".popupBack").remove();
+					}, 500);
+				}, 300);
+			}
+
+
+			function getEntity(entity, callback) {
+				// getting the last segment
+				var entityName = $.trim(/([^\/]*)$/.exec(entity["owl:sameAs"])[1]),
+					entityType = entity["dc:type"].toLowerCase();
+
+				// TODO hmmm...
+				if (entity.dbpedia) {
+					return entity.dbpedia;
+				}
+
+				if (!entityName) {
+					console.error("Wrong URI or entity name");
+					return false;
+				}
+
+				if (dbpediaCache[entityName]) {
+					return callback(dbpediaCache[entityName], entityType);
+				} else {
+					sparqlDBpedia.makeQuery(_.template($(".templates .sparql .dbpedia").html())({
+						entityName: entityName
+					}), function(data) {
+						data = colonToUnderscore(data["http://dbpedia.org/resource/" + entityName]);
+						dbpediaCache[entityName] = data;
+						callback(data, entityType);
+					});
+				}
+			}
+
+
+			function initSubmenu($submenu, entity) {
+
+				function openSection($button) {
+					console.log("openSectoin");
+
+					var target = $.trim($button.attr("class").replace("button", ""));
+
+					$submenu.find("li.button").removeClass("active");
+					$button.addClass("active");
+
+					$sections.removeClass("show")
+						.filter("." + target).addClass("show");
+				}
+
+				var $sections = $content.find(".section"),
+					$buttons = $submenu.find("li.button");
+
+				openSection($buttons.first());
+
+				$buttons.on("click", function() {
+					var $button = $(this);
+					if ($button.hasClass("location")) {
+						initPopup("map", function() {
+							renderMap(".popup", entity.dbpedia["georss__point"].split(" "));
+						});
+					}
+					else if ($button.hasClass("media")) {
+						initPopup("media", function() {
+							initMedia(".popup", entity["rdfs:label"]);
+						});
+					} else {
+						openSection($button);
+					}
+				});
+			}
+
+
+			function renderEntity(entity) {
+
+				var $submenu;
+				showEntity();
+
+				$content.html(_.template($(".templates .html .entity").html())(entity));
+				$submenu = $("nav.submenu > ul");
+
+				initSubmenu($submenu, entity);
+
+				if (!entity.dbpedia["georss__point"]) {
+
+					$submenu.find("li.button.location").remove();
+
+					// $(".depiction")
+					// 	.on("click", function() {
+
+					// 		initPopup("image", function() {
+
+					// 			if (!$(".image.popup > img").length) {
+					// 				$("<img />")
+					// 				.attr("src", $(".depiction").attr("src"))
+					// 				.appendTo(".image.popup");
+					// 			}
+					// 		});
+					// 	});
+				}
+			}
+
+
+			function showEntity() {
+				$back.removeClass("hide");
+				$menu.parent().addClass("hide");
+				$(".video_holder").addClass("hide");
+				$content.removeClass("hide");
+			}
+
+
+			function hideEntity() {
+				$back.addClass("hide");
+				$content.addClass("hide");
+				$menu.parent().removeClass("hide");
+				$(".video_holder").removeClass("hide");
+			}
+
+
+			function renderEntities(chapter) {
+				// console.log("render chapter... ");
+				// console.log(chapter);
+
+				$menu.html("");
+
+				// TODO add time, capitalize... letter-space..
+				$("<li />")
+					.addClass("header")
+					.text(chapter["rdfs:label"])
+					.appendTo($menu);
+
+
+				if (!chapter.entities || !chapter.entities.length) {
+					// $("<li/>")
+					// 	.text("There is no data.")
+					// 	.appendTo($menu);
+				} else {
+					chapter.entities.forEach(function(entity) {
+						var entityType = entity["dc:type"];
+						// TODO
+						if (entity.dbpedia && entity.dbpedia["rdfs__label"]) {
+							$("<li/>")
+								.addClass("clearfix")
+								.html(_.template($(".templates .html .entity_menu").html())(_.extend(entity.dbpedia, { type: entityType })))
+								.on("click", function() {
+									// getEntity(entity, renderEntity)
+									renderEntity(entity);
+								})
+								.appendTo($menu);
+						}
+
+					});	
+				}
+			}
+
+			function renderValue(value) {
+				var dbpediaNS = "http://dbpedia.org/resource/",
+					friendlyValue = value;
+				if (/^http\:\/\//.test(value) && !/\s/.test(value)) {
+					if (value.indexOf(dbpediaNS) === 0) {
+						friendlyValue = value.replace(dbpediaNS, "").replace(/_/g, "");
+					}
+					return '<a href="' + value + '" target="_blank">' + friendlyValue + '</a>';
+				} 
+				return value;
+			}
+
+			function initWebSocket() {
+
+				connection = new WebSocket("ws://" + ip + ":8888");
+
+				if (connection == null) {
+					console.log("connection error");
+				}
+				connection.onopen = function () {};
+				connection.onerror = function (error) { console.log("error.." + error.toString()); };
+				connection.onmessage = function (message) {  
+
+					// console.log("omnessage: ");
+					// console.log(message.data);
+
+					var matches = message.data.split(/\s/g),
+						action = matches[0],
+						value = matches[1],
+						value2 = matches[2],
+						actions = {
+							"duration" : function() {
+								duration = Number(value);
+							},
+							"control" : function() {
+
+								var videoNumber = /(\d)\..+$/.exec(value)[1],
+									videoPath = getUrl(videoNumber, { fromWeb: true});
+
+								console.log(value)
+
+								sum = 0;
+								countsent = 0;
+
+								// find the video uri
+								// sparqlTv.makeQuery(_.template($("#sparql_mediaresource_template").html())({ videoURL: videoPath}), function(data) {
+								// 	// videoData.uri = data;
+								// });
+									// then find the chapters
+
+								sparqlTv.makeQuery(_.template($(".templates .sparql .chapters").html())(), function(data) {
+									// videoData.chapters = data;
+									videoData.chapters = _.reduce(data, function(combine, d) {
+										combine[d["rdfs:label"]] = d;
+										return combine; }, {});
+
+									chaptersWithData.forEach(function(label) {
+										fetchChapterData(videoData.chapters[label], function(chapter) {
+											_.each(chapter.entities, function(entity) {
+
+												getEntity(entity, function(data, entityType) {
+													entity.dbpedia = data;
+													entity.infobox = _.sortBy(_.map(data, function(value, property) {
+															var curie = property.split("__");
+															value = (_.isArray(value))
+																? value.map(renderValue).join("<br />")
+																: renderValue(value);
+
+															return {
+																property: curie[1],
+																value: value
+															};
+														})
+														.filter(function(obj) {
+															return ["rdfs__label",
+																	"foaf__depiction",
+																	"rdfs__comment"].indexOf(obj.property) === -1
+														}),
+														function(obj) { return obj.property; });
+												});
+											});
+										});
+									});
+								});
+
+								// here add entities to all the chapters
+
+								$("#controller").text(value);
+							},
+							"userCount" : function() {
+								$("#userCount").text(Number(value) - 1);
+							},
+							"summary" : function() {
+								$("#summary").text(message.data);
+							},
+							"grab" : function() {
+
+								function callback(currentChapter) {
+
+									var closestEntity = _.sortBy(currentChapter.entities, function(d) {
+										return Math.abs(currentTime - d["nsa:temporalEnd"]);
+									})[0];
+
+									renderEntities(currentChapter);
+									if (closestEntity && closestEntity.dbpedia && closestEntity.dbpedia["rdfs__label"]) {
+										renderEntity(closestEntity);
+									} else {
+										hideEntity();
+										// renderEntities(currentChapter);
+									}
+								}
+
+								var currentTime = Number(value) || 0,
+									capture = value2,
+									currentChapter = _.filter(videoData.chapters, function(d) {
+										return (currentTime >= d["nsa:temporalStart"]) && (currentTime <= d["nsa:temporalEnd"]);
+									})[0],
+									results;
+
+								if (duration) {
+									renderTimestamp(currentTime);
+									renderChapter(currentChapter, currentTime);
+									renderBars(currentChapter);
+									removePopup();
+								}
+
+								$("#capture").attr("src", capture);
+								$bgImg.attr("src", capture);
+
+								// _.delay(function() {
+								// 	boxBlurImage( "bgImg", "canvasBgImg", 22, false, 2 );
+								// }, 1000);
+
+								// if (!currentChapter) {
+								// 	console.error("No chapter has been found for the current time!");
+								// 	return false;
+								// }
+
+								// if (chaptersWithData.indexOf(currentChapter["rdfs:label"]) === -1) {
+								// 	console.log("There is no data for the chapter " + currentChapter["rdfs:label"]);
+								// 	return false;
+								// }
+
+
+								if (currentChapter) {
+									if (!currentChapter.entities) {
+										fetchChapterData(currentChapter, callback);
+									} else {
+										callback(currentChapter);
+									}
+								}
+
+							},
+							"isAllReady" : function() {},
+							"timestamp" : function() {
+
+								var threshold = 0.4,
+									estimatedTimeOnMaster = Number(value);
+
+
+								sum += Math.abs(estimatedTimeOnMaster - curTime);
+								countsent++;
+								
+								if (Math.abs(estimatedTimeOnMaster - curTime) > threshold) {
+									value = "Master:" + estimatedTimeOnMaster + " Cur:" + curTime + " Threshold: " + threshold + " NotSync - Sync";
+								} else {
+									value = "Master:" + estimatedTimeOnMaster + " Cur:" + curTime + " Threshold: " + threshold + " Sync - Sync";
+								}
+
+							}
+						};
+
+					actions[action]();
+					showActionInfo(action, value);
+				};
+			}
+
+			var sum 		= 0,
+				countsent 	= 0,
+
+				// canvas 		= $("canvas").get(0),
+				// ctx 		= canvas.getContext("2d"),
+
+				$back 		= $(".back"),
+				$content 	= $("#content"),
+				$timestamp 	= $(".timestamp"),
+				$chapter 	= $(".chapter"),
+				$bars 		= $(".bars"),
+				$menu 		= $("nav.menu > ul"),
+				$bgImg 		= $(".bg_img > img").css({
+					"width": window.innerWidth + "px",
+					"height": window.innerHeight + "px"
+				}),
+				$canvas 	= $("#canvasBgImg").attr({
+					"width": window.innerWidth + "px",
+					"height": window.innerHeight + "px"
+				}),
+				// $map 		= $("#map_canvas"),
+
+				actionInfoTemplate = _.template($(".templates .html .action_info").html()),
+				sparqlTv = new Sparql({
+					endpoint		: "http://eventmedia.eurecom.fr/sparql?format=json&default-graph-uri=http%3A%2F%2Fdata.linkedtv.eu&query=",
+					ns: {
+						"linkedtv" 	: "http://data.linkedtv.eu/ontology/",
+						"oa" 		: "http://www.w3.org/ns/oa#",
+						"nsa" 		: "http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#",
+						"ma" 		: "http://www.w3.org/ns/ma-ont#",
+						"dc"		: "http://purl.org/dc/elements/1.1/",
+						"owl"		: "http://www.w3.org/2002/07/owl#",
+						"rdfs"		: "http://www.w3.org/2000/01/rdf-schema#",
+						"lscom"		: "http://vocab.linkeddata.es/lscom/",
+						"prov"		: "http://www.w3.org/ns/prov-o/"
+					}
+				}),
+				sparqlDBpedia = new Sparql({
+					endpoint		:  "http://live.dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&format=json&query=",
+					ns: {
+						"dbpedia-owl":	"http://dbpedia.org/ontology/",
+						"foaf"		:	"http://xmlns.com/foaf/0.1/",
+						"georss"	:	"http://www.georss.org/georss/",
+						"dbpprop"	:	"http://dbpedia.org/property/",
+						"dbpedia2"	: 	"http://dbpedia.org/property/",
+						"rdfs"		: 	"http://www.w3.org/2000/01/rdf-schema#",
+						""			: 	"http://dbpedia.org/resource/"
+					}
+				}),
+				chaptersWithData = ["flughafen",  "olympia", "silbermond", "brandauer"],
+				// mediafinderData = {
+				// 	"Berlin": {label: "Berlin", id: 673},
+				// 	"Federal Ministry of Finance (Germany)": {label: "Finanzministerium", id: 676},
+				// 	"Berlin Brandenburg Airport": {label: "Airport Brandenburg", id: 675}, 
+				// 	"Rotes Rathaus": {label: "Rotes Rathaus", id: 677},
+				// 	"Peter Kretschmer": {label: "Kretschmer", id: 690},
+				// 	"Potsdamer Platz": {label: "Potsdamer Platz", id: 685},
+				// 	"Uckermark": {label: "Uckermark", id: 686},			
+				// 	"Radio Berlin International": {label: "radio berlin", id: 689},
+				// 	"Silbermond": {label: "silbermond", id: 691},		
+				// 	"Klaus Maria Brandauer": {label: "klaus Brandauer", id: 693},
+				// 	"Luis Buñuel":  {label: "luis buñuel", id: 694}
+				// },
+				width = 804,
+				hasPlayed = false,
+				duration,
+				connection,
+
+				ip 		= "172.24.10.61";
+				// ip 		= "192.168.1.11";
+				// ip 		= "10.42.0.11";
+
+
+				window.videoData = {};
+				// window.dbpediaCache = {};
+
+
+			$back.on("click", hideEntity);
+
+			initWebSocket();
+		});
+
+	</script>
 
 </head>
-<body >
+<body>
 
-<div class="container" id="four">
-    <div class="borderline">	
+
+	<div class="templates">
+		
+		<div class="sparql">
+			<script type="text/template" class="chapters">
+				construct {
+					?chapter nsa:temporalStart ?start;
+						nsa:temporalEnd ?end;
+						rdfs:label ?label .
+				}
+				where {
+				   ?chapter a linkedtv:Chapter .
+				   ?chapter rdfs:label ?label .
+				   ?annotation 	oa:hasTarget ?mediafragment ;
+						oa:hasBody ?chapter .
+				   ?mediafragment 	a ma:MediaFragment ;
+						nsa:temporalStart ?start ;
+						nsa:temporalEnd ?end .
+						#ma:isFragmentOf ?upperMediaFragment.
+						#?upperMediaFragment	a ma:MediaResource;
+							#ma:locator <http://stream6.noterik.com/progressive/stream6/domain/linkedtv/user/rbb/video/59/rawvideo/4/raw.mp4> .		
+				}
+				order by ?start
+			</script>
+
+			<script type="text/template" class="mediaresource">
+				construct {
+					?mediaResource a ma:MediaResource .
+				}
+				where {
+					?mediaResource a ma:MediaResource ;
+						ma:locator <<%= videoURL %>> .
+				}
+			</script>
+
+			<script type="text/template" class="entities">
+				construct {
+				?entity	rdfs:label ?label ;
+				        dc:type ?type ;
+				        owl:sameAs ?sameas ;
+				        linkedtv:hasRelevance ?relevance ;
+				        linkedtv:hasConfidence ?confidence ;
+				        dc:identifier ?id ;
+				        dc:source ?source ;
+						nsa:temporalStart ?startEntity ;
+						nsa:temporalEnd ?endEntity .
+				 }
+				 where {
+				   ?chapter a linkedtv:Chapter ;
+				            rdfs:label "<%= chapterLabel %>".
+				   ?annotationChapter 	oa:hasTarget ?mediafragmentChapter ;
+						oa:hasBody ?chapter .
+				   ?mediafragmentChapter 	a ma:MediaFragment ;
+						nsa:temporalStart ?startChapter ;
+						nsa:temporalEnd ?endChapter .
+
+				    ?entity rdfs:label ?label .
+					OPTIONAL { ?entity dc:type ?type . }
+					OPTIONAL { ?entity owl:sameAs ?sameas . }
+					OPTIONAL { ?entity linkedtv:hasRelevance ?relevance . }
+					OPTIONAL { ?entity linkedtv:hasConfidence ?confidence . }
+					OPTIONAL { ?entity dc:identifier ?id . }
+					OPTIONAL { ?entity dc:source ?source . }
+					?annotationEntity 	oa:hasTarget ?mediafragmentEntity ;
+							oa:hasBody ?entity .
+					?mediafragmentEntity 	a ma:MediaFragment ;
+							linkedtv:hasSubtitle ?hasSubtitle ;
+				                         nsa:temporalStart ?startEntity ;
+							nsa:temporalEnd ?endEntity .
+
+					filter(?startChapter <= ?startEntity) .
+				        filter(?endChapter >= ?endEntity) .					
+				}
+			</script>
+
+			<script type="text/template" class="dbpedia">
+				DESCRIBE <http://dbpedia.org/resource/<%= entityName %>>
+			</script>
+
+
+			<script type="text/template" class="location_bckp">
+				construct {
+					:<%= entityName %>  rdfs:label ?label;
+										rdfs:comment ?comment;
+					                    georss:point ?geo;
+					                    foaf:homepage ?homepage;
+					                    foaf:depiction ?depiction;
+					                    dbpedia2:populationUrban ?population;
+					                    dbpedia-owl:country ?country.
+					}
+				WHERE {
+					:<%= entityName %>  rdfs:label ?label;
+										rdfs:comment ?comment ;
+					                    georss:point ?geo;
+					                    foaf:homepage ?homepage;
+					                    foaf:depiction ?depiction;
+					                    dbpedia2:populationUrban ?population;
+					                    dbpedia-owl:country ?country.
+
+					FILTER (lang(?label) = 'en') .
+					FILTER (lang(?comment) = 'en') .
+				}
+			</script>
+
+
+			<script type="text/template" class="person_bckp">
+				construct {
+					:<%= entityName %>  rdfs:label ?label;
+										rdfs:comment ?comment ;
+					                    foaf:depiction ?depiction ;
+					                    dbpedia2:dateOfBirth ?dateOfBirth .
+					}
+				WHERE {
+					:<%= entityName %>  rdfs:label ?label ;
+										rdfs:comment ?comment ;
+					                    foaf:depiction ?depiction .
+
+					OPTIONAL { :<%= entityName %> dbpedia2:dateOfBirth ?dateOfBirth. }
+
+					FILTER (lang(?label) = 'en') .
+					FILTER (lang(?comment) = 'en') .
+				}
+			</script>
+		</div>
+
+
+		<div class="html">
+
+			<script type="text/template" class="action_info">
+				<div class="icon">
+					<img src="images/<%= action %>_icon.jpg">
+				</div>
+				<div class="data">
+					<h4 class="fg-color-white"><%= action %></h4>
+					<p><%= value %></p>
+				</div>
+			</script>
+
+
+			<script type="text/template" class="menu_header">
+				<h2><%= rdfs__label %></h2>
+				<span class="time start"><%= nsa__temporalStart %></span>
+				<span class="time end"><%= nsa__temporalEnd %></span>
+			</script>
+
+
+			<script type="text/template" class="entity_menu">
+				<% if (typeof foaf__depiction !== "undefined") { %>
+					<figure><img src="<%= foaf__depiction %>"/></figure>
+				<% } %>
+				<div class="textual_content">
+					<div class="type">
+						<% if (typeof type !== "undefined") { %>
+							<%= type %>
+						<% } %>
+					</div>
+					<% if (typeof rdfs__label !== "undefined") { %>
+							<h3><%= rdfs__label %></h3>
+					<% } %>
+					<% if (typeof rdfs__comment !== "undefined") { %>
+						<p class="comment"><%= rdfs__comment.substr(0, 150) %></p>
+					<% } %>
+				</div>
+			</script>
+
+
+			<script type="text/template" class="entity">
+				<% if (dbpedia.rdfs__label) { %>
+					<h2><%= dbpedia.rdfs__label %></h2>
+				<% } %>
+
+				<nav class="submenu">
+					<ul class="clearfix">
+						<li class="info button"><i class="general foundicon-website"></i>info</li>
+						<li class="data button"><i class="gen-enclosed foundicon-graph"></i>data</li>
+						<li class="location button"><i class="general foundicon-location"></i>location</li>
+						<li class="media button"><i class="foundicon-video"></i>media</li>
+					</ul>
+				</nav>
+
+				<div class="info section">
+					<% if (dbpedia.foaf__depiction) { %>
+						<figure><img src="<%= dbpedia.foaf__depiction %>"  class="depiction" /></figure>
+					<% } %>
+					<div class="textual_content">
+						<% if (dbpedia.rdfs__comment) { %>
+							<p class="comment"><%= dbpedia.rdfs__comment %></p>
+						<% } %>
+					</div>
+				</div>
+
+				<div class="data section">
+					<table>
+					<% infobox.forEach(function(obj) {
+						if (obj.property && obj.value) { %>
+							<tr>
+								<th><%= obj.property %></th>
+								<td><%= obj.value %></td>
+							</tr>
+						<% 	}
+					}); %>
+					</table>
+				</div>
+				<div class="location section"></div>
+				<div class="media section"></div>
+
+
+	
 				
-	<div class="channel bg-color-blueDark">
-		<div class="tile-content">
-			<h3><span id="controller" style="visibility:hidden;">---</span></h3>
-			<h3>Total User Count: <span id="userCount"></span></h3>
+
+			</script>
+
 		</div>
 	</div>
-	<div  class="list bg-color-orange" >
-		<ul id="myList" class="listview" style="overflow:auto;">
-			
-		</ul>
-	</div>
-	
-	<div  class="video  outline-color-green">   
-			<div >
-				<video style="width: 100%; height: 440px"   id="video" src="" controls="controls"  ></video>
-			</div>
-	</div>
-				
-				
-	<div class="detail bg-color-green" >
-		<div class="tile-content">
-			<h3 id="header2" >Channel Summary</h3>
-			<h4 id="summary" >
-				----
-			</h4>
-		</div>   
-	</div>
-	<div class="applebutton">
-		<img style="width:50px;height=50px;" src="images/applebutton.jpg" alt="apple button"/>
-	</div>
-	
-	
-</div>
-		<div class="camera">
-		<img style="width:30px;height=30px;" src="images/camera.jpg" alt="camera"/>
-	</div>
-</div>
 
+		<div class="bg_img">
+			<img class="blurred" id="bgImg"/>
+			<canvas id="canvasBgImg"></canvas>
+		</div>	    
+
+	    <div id="container">
+
+	   		<div class="back hide">show chapter</div>
+
+	    	<div class="timeline">
+	    		<div class="chapter">
+	    			<span></span>
+	    		</div>
+	    		<div class="timestamp"></div>
+	    		<div class="bars"></div>
+	    	</div>
+
+	    	<nav class="menu">
+	    		<ul></ul>
+	    	</nav>
+
+	    	<article id="content" class="hide"></article>
+
+			<div class="channel bg-color-blueDark">
+				<div class="tile-content">
+					<h3>Total User Count: <span id="userCount"></span></h3>
+				</div>
+			</div>
+
+			<div class="list bg-color-orange">
+				<ul id="actions" class="listview"></ul>
+			</div>
+
+			<div class="video_holder">
+					<img id="capture" />   
+	    			<!-- <video id="video" src="videos/video59.mp4" type='video/mp4; codecs="H.264, AAC"' controls="controls" autoplay="autoplay"></video> -->
+			</div>
+	
+
+
+			<div class="detail bg-color-green">
+				<div class="tile-content">
+					<h3 id="header2">Channel Summary</h3>
+					<h4 id="summary">
+						----
+					</h4>
+				</div>   
+			</div>
+
+		</div>
 
 </body>
 </html>

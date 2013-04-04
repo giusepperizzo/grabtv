@@ -1,0 +1,1222 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sparql",
+				"sparqlDBpedia"
+			],
+			[
+				"get",
+				"getLink"
+			],
+			[
+				"left",
+				"leftGesture"
+			],
+			[
+				"wid",
+				"clusterWidthFilter"
+			],
+			[
+				"legen",
+				"legendHeight"
+			],
+			[
+				"ke",
+				"sliderKeyInput"
+			],
+			[
+				"line",
+				"lineChart"
+			],
+			[
+				"hight",
+				"highlightClusters"
+			],
+			[
+				"micropost",
+				"micropostInstance"
+			],
+			[
+				"maxn",
+				"defaultMaxNumPerSearch"
+			],
+			[
+				"timedata",
+				"timeDataFull"
+			],
+			[
+				"callback",
+				"callbackBeforeTransition"
+			],
+			[
+				"content",
+				"contentHeight"
+			],
+			[
+				"footer",
+				"footerHeight"
+			],
+			[
+				"is",
+				"isHoriz"
+			],
+			[
+				"clusterMe",
+				"clusterMethodNames"
+			],
+			[
+				"filter",
+				"filterByCluster"
+			],
+			[
+				"d3",
+				"d3Key"
+			],
+			[
+				"use",
+				"useSine"
+			],
+			[
+				"remo",
+				"removeEventListener"
+			],
+			[
+				"timeline",
+				"timelinePaddingRight"
+			],
+			[
+				"history",
+				"historyWidth"
+			],
+			[
+				"hiso",
+				"historyWidth"
+			],
+			[
+				"border-left-",
+				"border-bottom-left-radius"
+			],
+			[
+				"me",
+				"method"
+			],
+			[
+				"decode",
+				"decodeSearchTerm"
+			],
+			[
+				"default",
+				"defaultWidth"
+			],
+			[
+				"calcula",
+				"calculateDimensions"
+			],
+			[
+				"defaul",
+				"defaultWidth"
+			],
+			[
+				"su",
+				"submenu_container"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"force",
+				"forceHelper"
+			],
+			[
+				"micropo",
+				"micropostUrl"
+			],
+			[
+				"items",
+				"itemsById"
+			],
+			[
+				"first",
+				"firstCluster"
+			],
+			[
+				"prev",
+				"prevNode"
+			],
+			[
+				"preven",
+				"preventDefault"
+			],
+			[
+				"micro",
+				"micropostUrl"
+			],
+			[
+				"labe",
+				"clusterLabel"
+			],
+			[
+				"data",
+				"dataByCluster"
+			],
+			[
+				"prevD",
+				"prevDataItem"
+			],
+			[
+				"color",
+				"freshnessColorScale"
+			],
+			[
+				"new",
+				"newSortBy"
+			],
+			[
+				"item",
+				"itemHeight"
+			],
+			[
+				"sort",
+				"sortBy"
+			],
+			[
+				"sor",
+				"sortBy"
+			],
+			[
+				"y",
+				"yTitles"
+			],
+			[
+				"title",
+				"titleRows"
+			],
+			[
+				"gr",
+				"groupBySN"
+			],
+			[
+				"used",
+				"usedItemWidth"
+			],
+			[
+				"miro",
+				"micropostUrl"
+			],
+			[
+				"Flickr",
+				"FlickrVideos"
+			],
+			[
+				"margin",
+				"marginTop"
+			],
+			[
+				"med",
+				"mediaPlatforms"
+			],
+			[
+				"mic",
+				"micrpostUrl"
+			],
+			[
+				"max",
+				"maxZIndex"
+			],
+			[
+				"collecti",
+				"collectionEvents"
+			],
+			[
+				"colle",
+				"collectionEvents"
+			],
+			[
+				"near",
+				"nearByEvents"
+			],
+			[
+				"men",
+				"menu_bottom"
+			],
+			[
+				"Me",
+				"mentions"
+			],
+			[
+				"se",
+				"selectedSort"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "public/js/assets/sparqlquery.js",
+			"settings":
+			{
+				"buffer_size": 1994,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1031,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/VideoGallery.css",
+			"settings":
+			{
+				"buffer_size": 6362,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "video-controller.html",
+			"settings":
+			{
+				"buffer_size": 6488,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server-html.js",
+			"settings":
+			{
+				"buffer_size": 444,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "mirjanaduletic@net.hr\n\n",
+			"settings":
+			{
+				"buffer_size": 23,
+				"line_ending": "Unix",
+				"name": "mirjanaduletic@net.hr"
+			}
+		},
+		{
+			"file": "server-controller.js",
+			"settings":
+			{
+				"buffer_size": 2946,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/kinesis.css",
+			"settings":
+			{
+				"buffer_size": 1372,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n\n\n\n@prefix ns0:	<http://www.w3.org/ns/oa#> .\n@prefix ns1:	<http://data.linkedtv.eu/annotation/> .\n@prefix ns2:	<http://data.linkedtv.eu/shot/> .\nns1:f2ae9446-7631-4bd1-adfc-80f0b2380ac4	ns0:hasBody	ns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae .\n@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix ns4:	<http://data.linkedtv.eu/ontology/> .\nns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae	rdf:type	ns4:Shot .\n@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .\nns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae	rdfs:label	\"Sh210\" .\n\n\n\n\nns1:f2ae9446-7631-4bd1-adfc-80f0b2380ac4	\n\n\n?annotation oa:hasBody ?shot ns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae .\n\n?annotation oa:hasBody ?shot\n\nPREFIX linkedtv: <http://data.linkedtv.eu/ontology/>\nPREFIX oa: <http://www.w3.org/ns/oa#>\nPREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>\nPREFIX ma: <http://www.w3.org/ns/ma-ont#>\n\nselect distinct ?shot, ?start, ?end \nwhere {\n	?shot a linkedtv:Shot.\n	?mediafragment a ma:MediaFragment.\n	?annotation oa:hasTarget ?mediafragment. \n	?annotation oa:hasBody ?shot. \n	?mediafragment nsa:temporalStart ?start. \n	?mediafragment nsa:temporalEnd ?end.\n}\norder by ?start\n\n\n\n\n\nPREFIX linkedtv: <http://data.linkedtv.eu/ontology/>\nPREFIX oa: <http://www.w3.org/ns/oa#>\nPREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>\nPREFIX ma: <http://www.w3.org/ns/ma-ont#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX prov: <http://www.w3.org/ns/prov-o/>\n\nselect distinct ?label, ?same, ?entity, ?annotation, ?start, ?end \nwhere {\n	#?shot a linkedtv:Shot.\n	?mediafragment a ma:MediaFragment.\n	?annotation oa:hasTarget ?mediafragment. \n	?annotation oa:hasBody ?entity. \n        ?entity rdfs:label ?label.\n        ?entity owl:sameAs ?same.\n        #?shot rdf:type linkedtv:Entity .\n        #?shot linkedtv:hasRelevance ?relevance .\n	?mediafragment nsa:temporalStart ?start. \n	?mediafragment nsa:temporalEnd ?end.\n        filter(?start > 10) .\n        filter(?end < 15) .\n}\norder by ?start\n\n\nPREFIX prov: <http://www.w3.org/ns/prov-o/>\nselect distinct ?annotation, ?video\nwhere {\n	?annotation prov:wasDerivedFrom ?video.\n}\nlimit 10							\n\n\n\n",
+			"settings":
+			{
+				"buffer_size": 2273,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "video-client.html",
+			"settings":
+			{
+				"buffer_size": 11918,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/assets/github.info.js",
+			"settings":
+			{
+				"buffer_size": 591,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "js/jquery-1.9.1.min.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 27.0,
+		"selected_items":
+		[
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/vukmilicic/Documents/Projects/grabtv/css/modern.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/video-client.html",
+		"/Users/vukmilicic/Documents/Projects/grabtv/js/jquery-1.9.1.min.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/package.json",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/css/site.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/sparql.js",
+		"/Users/vukmilicic/Documents/Projects/eventmedia_old/js/app.js",
+		"/Users/vukmilicic/Desktop/roki_plac_info",
+		"/Users/vukmilicic/Documents/Projects/grabtv/video-controller.html",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/github.info.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/js/kinesis-js-sdk.min.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/css/kinesis.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/run.bat",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/initmixed.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/story/elezioni2013.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/index.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/moment.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/css/jquery.ad-gallery.css",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/data_electioni.json",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/tmp.tsv",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/tmp.csv",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/us-income-inequality.csv",
+		"/Users/vukmilicic/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/data_electioni.json",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/colorbrewer.js",
+		"/Users/vukmilicic/Documents/Projects/vezba/repeatingtext.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/css/prettyPhoto.css",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/jquery.ad-gallery.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/main_fordemo_bckp.js",
+		"/Users/vukmilicic/Movies/papre",
+		"/Users/vukmilicic/Documents/Projects/chrome-ext/d3hn.js",
+		"/Users/vukmilicic/Movies/mediafinder/new/pics/anim1/index.html",
+		"/Users/vukmilicic/Movies/mediafinder/new/pics/anim1.html",
+		"/Users/vukmilicic/Documents/Projects/bootstrap/index.php",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/css/styles_online.css",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/main_online.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/bckp",
+		"/Users/vukmilicic/Documents/Projects/mediafinder_test/html/index3.html",
+		"/Users/vukmilicic/Desktop/dna-master/ManuSporny-genome.txt",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/util.js",
+		"/Users/vukmilicic/Desktop/test.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/sparqlquery.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/main.js",
+		"/Users/vukmilicic/Documents/Projects/bootstrap/topmenu.php",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/class.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/backbone.queryparams.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/(function(_, Backbone) {",
+		"/Users/vukmilicic/Documents/Projects/vezba/index.html",
+		"/Users/vukmilicic/Documents/Projects/giftwrappr/index.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/css/styles.css",
+		"/Users/vukmilicic/Documents/Projects/d3_hackernews/d3hn.js",
+		"/Users/vukmilicic/Documents/Projects/media-server/mediafinder.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/aaa.json",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/backup_links.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/backup_bubble.html",
+		"/Users/vukmilicic/Documents/Projects/media-server/server.js",
+		"/Users/vukmilicic/Documents/Projects/mediafinder/css/styles.css",
+		"/Users/vukmilicic/Documents/Projects/mediafinder/html/index4.html",
+		"/Users/vukmilicic/Documents/Projects/d3_hackernews/bookmarklet.txt",
+		"/Users/vukmilicic/Documents/Projects/d3_hackernews/bookmarklet.html",
+		"/Volumes/PENDRIVE/EVENTMEDIA/root/index.html",
+		"/Users/vukmilicic/Documents/Projects/d3_hackernews/d3hn.user.js",
+		"/Users/vukmilicic/Documents/Projects/d3_hackernews/d3_hn.js",
+		"/Users/vukmilicic/Documents/Projects/linkedtv-old2/projects/mediafinder/ui/js/jquery.prettyPhoto.js",
+		"/Users/vukmilicic/Desktop/temp/LocalSettings.php",
+		"/Users/vukmilicic/Desktop/temp/rss.php",
+		"/Users/vukmilicic/Desktop/temp/date",
+		"/Users/vukmilicic/Desktop/temp/error_log",
+		"/Users/vukmilicic/Documents/Projects/mediafinder/html/index.html",
+		"/Users/vukmilicic/Documents/Projects/mediafinder/styles.css",
+		"/Users/vukmilicic/Documents/Projects/mediafinder/index.html",
+		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/sql/mediafinder.sql",
+		"/Users/vukmilicic/Documents/Projects/eventmedia/js/app.js",
+		"/Users/vukmilicic/Documents/Projects/eventmedia/index.html",
+		"/Users/vukmilicic/Documents/Projects/eventmedia/js/jquery.setmap.js",
+		"/Users/vukmilicic/Documents/Projects/eventmedia/css/styles.css",
+		"/Users/vukmilicic/Documents/Projects/d3/football/data.js",
+		"/Users/vukmilicic/Documents/Projects/d3/football/styles.css",
+		"/Users/vukmilicic/Documents/Projects/d3/football/index_svg.html",
+		"/Users/vukmilicic/Documents/Projects/d3/football/index_divs.html",
+		"/Users/vukmilicic/Desktop/eventmedia-new/js/app.js",
+		"/Users/vukmilicic/Documents/Projects/d3/football/1.svg",
+		"/Users/vukmilicic/Documents/Projects/wikinodes/Inflorescence - Wikipedia, the free encyclopedia.html",
+		"/Users/vukmilicic/Documents/Projects/wikinodes/script.js",
+		"/Users/vukmilicic/Documents/Projects/wikinodes/styles.css",
+		"/Users/vukmilicic/Documents/Projects/celtra/index2.html",
+		"/Users/vukmilicic/Documents/Projects/d3/football/0.svg",
+		"/Users/vukmilicic/Documents/Projects/d3/football/test.html",
+		"/Users/vukmilicic/Documents/Projects/d3/football/index_svg2.html",
+		"/Users/vukmilicic/Documents/Projects/celtra/data.js",
+		"/Users/vukmilicic/Documents/Projects/d3/football/index2.html",
+		"/Users/vukmilicic/Documents/Projects/d3/football/index.html",
+		"/Users/vukmilicic/Desktop/eventmedia-new/index.html",
+		"/Users/vukmilicic/Documents/Projects/wikinodes/d3.v2.min.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"",
+			"anim1.html",
+			"d3hn.css",
+			"",
+			"header .bottom2",
+			"",
+			"patchConf",
+			"index.html",
+			"",
+			"clustersNames"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"desc",
+			"Peter Kretschmer",
+			".desc",
+			"video",
+			"content",
+			"container",
+			"amsterd",
+			"template",
+			"delimiter",
+			"id=\"content\"",
+			"sparql_",
+			"sparqlTv",
+			"sparql_location_template",
+			"location_",
+			"sparql",
+			"template",
+			"sparql",
+			"psarql",
+			"pause",
+			"container",
+			"video",
+			"four",
+			".video",
+			"borderline",
+			"endpoint",
+			"prov",
+			"prefix",
+			"chooser",
+			"ns",
+			"$",
+			"_.tem",
+			"nsInverse",
+			"that",
+			"uriToCurie",
+			"tempor",
+			"nsa",
+			"temporalEnd",
+			"#end",
+			"foo",
+			"console",
+			"cons",
+			"foo",
+			"ns",
+			"query",
+			"actionInfoTemplate",
+			"_.tem",
+			"action_info_template",
+			"template",
+			"action_info_template",
+			"action_template",
+			"sparqlTv",
+			"queryType",
+			"sparqlQuery\n",
+			"sparqlq",
+			"player",
+			"isAllReady",
+			"log",
+			"userCount",
+			"isallready",
+			"isallre",
+			"value",
+			"matches",
+			"controlVideo",
+			"matches[1]",
+			"controlVideo",
+			"userCount",
+			"index",
+			"'",
+			"userCount",
+			"canplay",
+			"time_interval",
+			"action",
+			".channel",
+			"tile-",
+			".detail",
+			".list",
+			"isAllReady",
+			"mylis",
+			"mylist",
+			"actions",
+			"#actions",
+			"mylist",
+			"muylist",
+			"bg-color-green",
+			"$_",
+			"countsent",
+			"threshold",
+			"controller",
+			"isAllReadyFlag",
+			"sum",
+			"userco",
+			"userCount",
+			"sum",
+			"threshold",
+			"1d1d1d",
+			"container",
+			"userCount",
+			"bg_c",
+			"img_src",
+			"$(v",
+			"video",
+			"jquery",
+			"video",
+			"img_src",
+			"bg_color",
+			"img_src",
+			"bg_color",
+			"drawScreen",
+			"value",
+			"main_c",
+			"video",
+			"sum",
+			"summary",
+			"				// 	\"isAllReady\" : function() {\n				// 		isAllReadyFlag = value;\n				// 	},",
+			"para",
+			"parseFloat",
+			"parseIn",
+			"command",
+			"commands",
+			"command_t",
+			"action",
+			"container",
+			"template",
+			"bg-color-green",
+			"getLink",
+			"getUrl",
+			"getLink",
+			".src"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\"",
+			"video.currentTime",
+			"video",
+			"",
+			";",
+			",",
+			": ",
+			"",
+			": ",
+			"",
+			"#container.splash",
+			"patchConf",
+			"clusterNames",
+			"",
+			"mediaEnter",
+			""
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "public/js/assets/sparqlquery.js",
+					"settings":
+					{
+						"buffer_size": 1994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1068,
+								1068
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "package.json",
+					"settings":
+					{
+						"buffer_size": 1031,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "css/VideoGallery.css",
+					"settings":
+					{
+						"buffer_size": 6362,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3471,
+								3471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3316.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "video-controller.html",
+					"settings":
+					{
+						"buffer_size": 6488,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4809,
+								4809
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2449.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server-html.js",
+					"settings":
+					{
+						"buffer_size": 444,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								215,
+								215
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"settings":
+					{
+						"buffer_size": 23,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								23,
+								23
+							]
+						],
+						"settings":
+						{
+							"auto_name": "mirjanaduletic@net.hr",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "server-controller.js",
+					"settings":
+					{
+						"buffer_size": 2946,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1598,
+								1598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 565.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "css/kinesis.css",
+					"settings":
+					{
+						"buffer_size": 1372,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								60,
+								60
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"settings":
+					{
+						"buffer_size": 2273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2120,
+								1179
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 613.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "video-client.html",
+					"settings":
+					{
+						"buffer_size": 11918,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4598,
+								4598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 278.0,
+						"translation.y": 2026.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"file": "video-client.html",
+					"settings":
+					{
+						"buffer_size": 11918,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10950,
+								10950
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5939.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "public/js/assets/github.info.js",
+					"settings":
+					{
+						"buffer_size": 591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "js/jquery-1.9.1.min.js",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.488670343137,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 27.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"video",
+				"video-client.html"
+			],
+			[
+				"spq",
+				"public/js/assets/sparqlquery.js"
+			],
+			[
+				"moder",
+				"css/modern.css"
+			],
+			[
+				"jquery-1.9.1.min.js",
+				"js/jquery-1.9.1.min.js"
+			],
+			[
+				"videog",
+				"css/VideoGallery.css"
+			],
+			[
+				"modern.",
+				"css/modern.css"
+			],
+			[
+				".css",
+				"public/css/site.css"
+			],
+			[
+				"kine",
+				"css/kinesis.css"
+			],
+			[
+				"kines",
+				"js/kinesis-js-sdk.min.js"
+			],
+			[
+				".json",
+				"package.json"
+			],
+			[
+				"ma",
+				"js/main.js"
+			],
+			[
+				"ad",
+				"css/jquery.ad-gallery.css"
+			],
+			[
+				"index",
+				"html/index.html"
+			],
+			[
+				"stor",
+				"html/story/elezioni2013.html"
+			],
+			[
+				"ele",
+				"html/story/elezioni2013.html"
+			],
+			[
+				".tsv",
+				"data/tmp.tsv"
+			],
+			[
+				".csv",
+				"data/tmp.csv"
+			],
+			[
+				"init",
+				"js/initmixed.js"
+			],
+			[
+				"main.js",
+				"js/main.js"
+			],
+			[
+				"moment",
+				"js/moment.js"
+			],
+			[
+				"html",
+				"html/index.html"
+			],
+			[
+				"ad-",
+				"js/jquery.ad-gallery.js"
+			],
+			[
+				"mani",
+				"manifest.json"
+			],
+			[
+				"todo",
+				"todo.rtf"
+			],
+			[
+				"inde",
+				"html/index.html"
+			],
+			[
+				"util",
+				"js/util.js"
+			],
+			[
+				"style",
+				"css/styles.css"
+			],
+			[
+				"spar",
+				"js/sparqlquery.js"
+			],
+			[
+				"back",
+				"html/backup_links.html"
+			],
+			[
+				"setmap",
+				"js/jquery.setmap.js"
+			],
+			[
+				"in",
+				"index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 50.0,
+	"status_bar_visible": true
+}
