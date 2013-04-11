@@ -1,18 +1,7 @@
 # Welcome
 
-This is a semester project: Grab your favourite Tv and share it. This project is supervised by Assistant Prof. Raphael Troncy (Eurecom) and Ph.D students.
-
-### Version model
-0.0.0.1
-
-1) HTML rendering source server
-
-2) Broadcast controller
-
-3) Client(s)
-
-4) Websocket server
-
+This is a semester project: Grab your favourite Tv and share it. 
+The work listed in this repository is a follow-up of the one initially created by https://github.com/phanthanhtrung86/grabTV
 
 # Step to run
 ## Preliminary step
