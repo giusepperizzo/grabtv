@@ -21,7 +21,3 @@ Kinesis.IO : http://kinesis.io
 Hold your hand on the button --> Click video
 Swipe left : Play video
 Open hand widely and give forward such as the sign of pause: pause video
-
-## Special thanks
-
-Assistant Prof. Raphael Troncy, Ph.D. student Jose Luis Redondo Garcia and Ph.D. student Giuseppe Rizzo
