@@ -118,7 +118,7 @@ window.dbpediaCache = {
         "dbpedia2__r1Surface": "Asphalt"
     },
     "Berlin": {
-        "dbpedia-owl__thumbnail": "http://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Overview_Berlin.jpg/200px-Overview_Berlin.jpg",
+        "dbpedia-owl__thumbnail": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%C3%9Cber_den_D%C3%A4chern_von_Berlin.jpg/220px-%C3%9Cber_den_D%C3%A4chern_von_Berlin.jpg",
         "dbpedia-owl__wikiPageExternalLink": [
             "http://berlin.unlike.net/",
             "http://www.exberliner.com/",
@@ -262,7 +262,7 @@ window.dbpediaCache = {
         "dbpedia-owl__populationAsOf": "2012-07-31",
         "dbpedia-owl__areaTotal": 891850000,
         "dbpedia-owl__PopulatedPlace/areaTotal": "891.85",
-        "foaf__depiction": "http://upload.wikimedia.org/wikipedia/commons/1/13/Overview_Berlin.jpg",
+        "foaf__depiction": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%C3%9Cber_den_D%C3%A4chern_von_Berlin.jpg/220px-%C3%9Cber_den_D%C3%A4chern_von_Berlin.jpg",
         "dbpedia2__nuts": "DE3",
         "dbpedia2__leaderParty": "SPD",
         "dbpedia2__mayRainMm": 54,

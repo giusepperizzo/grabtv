@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="public/css/VideoGallery.css" />
 	<link rel="stylesheet" type="text/css" href="public/css/kinesis.css" />
 	<script src="public/js/assets/jquery-1.9.1.min.js"></script>
-	<script src="public/js/assets/kinesis-js-sdk.min.js"></script>
+
 	<script src="public/js/assets/underscore-min.js"></script>
 <!-- 
     <script src="public/js/assets/github.info.js"></script>
@@ -37,7 +37,6 @@
 
 						// setTimeout(function() {
 							ctx.drawImage(this, 0, 0, 450, 253);
-
 							connection.send("grab " + this.currentTime + " " + canvas.toDataURL("image/jpeg"));
 							resetTimer();
 						// }.bind(this), 500);
@@ -105,7 +104,6 @@
 				};
 
 				connection = new WebSocket("ws://" + ip + ":8888");
-				// connection = new WebSocket('ws://location:8888');
 
 				if (connection == null) {
 					console.log("connection error");
@@ -126,59 +124,6 @@
 			}
 
 
-			function initKinesis() {
-
-				function play() { video.play(); }
-				function pause() { video.pause(); }
-				function forward() { video.currentTime = Math.min(video.currentTime + 5, video.duration); }
-				function backward() { video.currentTime = Math.max(video.currentTime - 5, 0); }
-
-				var kinesis 	= new Kinesis(),
-					swipeUp 	= new SwipeGestureListener("mySwipeUp"),
-					swipeDown 	= new SwipeGestureListener("mySwipeDown"),
-					swipeRight 	= new SwipeGestureListener("mySwipeRight"),
-					swipeLeft 	= new SwipeGestureListener("mySwipeLeft");
-
-				Kinesis.cursor = function (position) {
-					console.log("position: ");
-					console.log(position);
-
-					// if (position.z < -0.4) {
-					// 	video.pause();
-					// }
-					// if (position.z > 0) {
-					// 	// if (isAllReadyFlag > 0) {
-					// 		video.play();
-					// 	// }
-					// 	// else {
-					// 	// 	console.warn("Not ready for all users");
-					// 	// }
-					// }
-				};
-
-				swipeUp.toFire      	= play;
-				swipeUp.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
-				swipeUp.directions  	= [GestureDirections.GestureDirectionUp];
-
-				swipeDown.toFire      	= pause;
-				swipeDown.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
-				swipeDown.directions  	= [GestureDirections.GestureDirectionDown];
-
-				swipeRight.toFire      	= forward;
-				swipeRight.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
-				swipeRight.directions  	= [GestureDirections.GestureDirectionRight];
-
-				swipeLeft.toFire      	= backward;
-				swipeLeft.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
-				swipeLeft.directions  	= [GestureDirections.GestureDirectionLeft];
-
-				kinesis.addGesture(swipeUp);
-				kinesis.addGesture(swipeDown);
-				kinesis.addGesture(swipeRight);
-				kinesis.addGesture(swipeLeft);
-			}
-
-
 			function initMenu() {
 
 				function showVideoInfo(videoName) {
@@ -193,7 +138,8 @@
 				}
 
 				function getUrl(videoName, options) {
-					$.extend({fromWeb: true}, options);
+
+					$.extend({ fromWeb: true }, options);
 					if (options.fromWeb) {
 						return "http://stream6.noterik.com/progressive/stream6/domain/linkedtv/user/rbb/video/" + videoName.replace("video", "") + "/rawvideo/4/raw.mp4";
 					} else {
@@ -208,58 +154,63 @@
 
 					var $button = $(this),
 						videoName = $button.data().file,
-						videoPath = getUrl(videoName, { fromWeb: true });
+						videoPath = getUrl(videoName, { fromWeb: false });
 
-					// $buttons.removeClass("selected");
-					// $button.addClass("selected");
+					setTimeout(function() {
 
-					$buttons.not($button).fadeOut("fast");
+						// $buttons.removeClass("selected");
+						// $button.addClass("selected");
 
-					// $(".video1").css({
-					// 	"width" : $button.find("img").css("width"),
-					// 	"height" : $button.find("img").css("height"),
-					// 	"margin-left" : $button.css("margin-left"),
-					// 	"margin-top" : $button.css("margin-top"),
-					// 	"z-index" : "10000"
-					// }).show();
+						$buttons.not($button).fadeOut("fast");
 
-					$(".video1").show();
+						// $(".video1").css({
+						// 	"width" : $button.find("img").css("width"),
+						// 	"height" : $button.find("img").css("height"),
+						// 	"margin-left" : $button.css("margin-left"),
+						// 	"margin-top" : $button.css("margin-top"),
+						// 	"z-index" : "10000"
+						// }).show();
 
-					$button.css({
-						"margin-left" : -width/2 + "px",
-						"margin-top" : -height/2 + "px",
-						"z-index" : "10000",
-						"opacity" : "0"
-					});
+						$(".video1").show();
 
-					$button.find("img").css({
-						"width" : width + "px",
-						"height" : height + "px"
-					});
+						$button.css({
+							"margin-left" : -width/2 + "px",
+							"margin-top" : -height/2 + "px",
+							"z-index" : "10000",
+							"opacity" : "0"
+						});
 
-					// _.delay(function() {
-					// 	$(".video1").show();
-					// 	$button.fadeOut(1500);
-					// }, 1000);
+						$button.find("img").css({
+							"width" : width + "px",
+							"height" : height + "px"
+						});
 
-					showVideoInfo(videoName);
+						// _.delay(function() {
+						// 	$(".video1").show();
+						// 	$button.fadeOut(1500);
+						// }, 1000);
 
-					if (isCurVideoFlag != videoPath) {
+						showVideoInfo(videoName);
 
-						resetTimer();
-						isAllReadyFlag = 0;
-						isCurVideoFlag = videoPath;
+						if (isCurVideoFlag != videoPath) {
 
-						video.src = videoPath;
-						video.autoBuffer = "true";
-						video.load();
+							resetTimer();
+							isAllReadyFlag = 0;
+							isCurVideoFlag = videoPath;
 
-						// small kludge to force video element to fire the "paused" event correctly and change the play/pause button 
-						video.play();
-						// video.pause();
+							video.src = videoPath;
+							video.autoBuffer = "true";
+							video.load();
 
-						connection.send("control " + videoPath);
-					}
+							// small kludge to force video element to fire the "paused" event correctly and change the play/pause button 
+							video.play();
+							// video.pause();
+							connection.send("control " + videoPath);
+						}
+
+						video_open = true;
+
+					}, 10);
 				});
 			}
 
@@ -276,12 +227,13 @@
 				video =  $("video").get(0),
 				connection,
 
-				canvas 	= $("canvas").get(0),
+				canvas 	= $("canvas#helper").get(0),
 				ctx 	= canvas.getContext("2d"),
 
-				ip 		= "172.24.10.61";
-				// ip 		= "192.168.1.11";
-				// ip 		= "10.42.0.11";
+				ip = "localhost";
+				// ip 		= "172.24.5.91";
+
+			window.video_open = false;
 
 			// $(canvas).attr({
 			// 	"width": window.innerWidth,
@@ -290,7 +242,7 @@
 
 			initVideo();
 			initWebSocket();
-			initKinesis();
+
 			initMenu();
 
 			// $("body").keydown(function(e){
@@ -305,9 +257,14 @@
 </head>
 
 <body>
+
+    <canvas id="cursor" width="100" height="100">
+      <div id="hand"></div>
+    </canvas>
+
 	<div class="tiviui">
 
-		<canvas width="450" height="253"></canvas>
+		<canvas width="450" height="253" id="helper"></canvas>
 
 		<img src="public/images/tv.jpg" alt="tv" id="big_tv"/>
 
@@ -336,23 +293,89 @@
 
 		<ul id="chooser">
 			<li data-file="video59">
-				<a href="#" class="interactive"><img src="public/thumbs/t1.png" /></a>
+				<a href="#"><img src="public/thumbs/t1.png" class="interactive" /></a>
 			</li>
 			<li data-file="video5">
-				<a href="#" class="interactive"><img src="public/thumbs/t2.png" /></a>
+				<a href="#"><img src="public/thumbs/t2.png" class="interactive" /></a>
 			</li>
 			<li data-file="video11">
-				<a href="#" class="interactive"><img src="public/thumbs/t3.png" /></a>
+				<a href="#"><img src="public/thumbs/t3.png" class="interactive" /></a>
 			</li>
 			<li data-file="video12">
-				<a href="#" class="interactive"><img src="public/thumbs/t4.png" /></a>
+				<a href="#"><img src="public/thumbs/t4.png" class="interactive" /></a>
 			</li>
 			<li data-file="video13">
-				<a href="#" class="interactive"><img src="public/thumbs/t5.png" /></a>
+				<a href="#"><img src="public/thumbs/t5.png" class="interactive" /></a>
 			</li>
 			</li>
 		</ul>
 
 	</div>
+
+
+	<script src="public/js/assets/kinesis-js-sdk.min.js"></script>
+	<script>
+
+		// function initKinesis() {
+
+			function playPause() { if (video.paused) { video.play(); } else { video.pause(); } }
+			function play() { video.play(); }
+			function pause() { video.pause(); }
+			function forward() { video.currentTime = Math.min(video.currentTime + 15, video.duration); }
+			function backward() {
+				if (video_open && Number(video.currentTime) < 3) {
+					location.reload();
+				}
+				video.currentTime = Math.max(video.currentTime - 15, 0);
+			}
+
+			var kinesis 	= new Kinesis(),
+				swipeUp 	= new SwipeGestureListener("mySwipeUp"),
+				swipeDown 	= new SwipeGestureListener("mySwipeDown"),
+				swipeRight 	= new SwipeGestureListener("mySwipeRight"),
+				swipeLeft 	= new SwipeGestureListener("mySwipeLeft");
+
+			// Kinesis.cursor = function (position) {
+			// 	console.log("position: ");
+			// 	console.log(position);
+
+			// 	// if (position.z < -0.4) {
+			// 	// 	video.pause();
+			// 	// }
+			// 	// if (position.z > 0) {
+			// 	// 	// if (isAllReadyFlag > 0) {
+			// 	// 		video.play();
+			// 	// 	// }
+			// 	// 	// else {
+			// 	// 	// 	console.warn("Not ready for all users");
+			// 	// 	// }
+			// 	// }
+			// };
+
+			swipeUp.toFire      	= play;
+			swipeUp.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
+			swipeUp.directions  	= [GestureDirections.GestureDirectionUp];
+
+			swipeDown.toFire      	= pause;
+			swipeDown.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
+			swipeDown.directions  	= [GestureDirections.GestureDirectionDown];
+
+			swipeRight.toFire      	= backward;
+			swipeRight.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
+			swipeRight.directions  	= [GestureDirections.GestureDirectionRight];
+
+			swipeLeft.toFire      	= forward;
+			swipeLeft.joints      	= [JointTypes.JointTypeHandRight, JointTypes.JointTypeHandLeft];
+			swipeLeft.directions  	= [GestureDirections.GestureDirectionLeft];
+
+			kinesis.addGesture(swipeUp);
+			kinesis.addGesture(swipeDown);
+			kinesis.addGesture(swipeRight);
+			kinesis.addGesture(swipeLeft);
+		// }
+
+		// initKinesis();
+
+	</script>
 </body>
 </html>

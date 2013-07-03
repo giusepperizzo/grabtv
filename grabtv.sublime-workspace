@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"entities",
+				"entitiesTime"
+			],
+			[
+				"last",
+				"lastActiveButton"
+			],
+			[
+				"time",
+				"timeupdate"
+			],
+			[
+				"current",
+				"currentTime"
+			],
+			[
+				"curren",
+				"currentChapter"
+			],
+			[
+				"chapters",
+				"chaptersWithData"
+			],
+			[
 				"sparql",
 				"sparqlDBpedia"
 			],
@@ -259,32 +283,8 @@
 			"file": "public/js/assets/sparqlquery.js",
 			"settings":
 			{
-				"buffer_size": 1994,
+				"buffer_size": 2575,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "package.json",
-			"settings":
-			{
-				"buffer_size": 1031,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/VideoGallery.css",
-			"settings":
-			{
-				"buffer_size": 6362,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "video-controller.html",
-			"settings":
-			{
-				"buffer_size": 6488,
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -296,12 +296,11 @@
 			}
 		},
 		{
-			"contents": "mirjanaduletic@net.hr\n\n",
+			"file": "video-client.html",
 			"settings":
 			{
-				"buffer_size": 23,
-				"line_ending": "Unix",
-				"name": "mirjanaduletic@net.hr"
+				"buffer_size": 27631,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -313,26 +312,34 @@
 			}
 		},
 		{
-			"file": "css/kinesis.css",
+			"file": "video-controller.html",
 			"settings":
 			{
-				"buffer_size": 1372,
+				"buffer_size": 9442,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "\n\n\n\n@prefix ns0:	<http://www.w3.org/ns/oa#> .\n@prefix ns1:	<http://data.linkedtv.eu/annotation/> .\n@prefix ns2:	<http://data.linkedtv.eu/shot/> .\nns1:f2ae9446-7631-4bd1-adfc-80f0b2380ac4	ns0:hasBody	ns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae .\n@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix ns4:	<http://data.linkedtv.eu/ontology/> .\nns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae	rdf:type	ns4:Shot .\n@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .\nns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae	rdfs:label	\"Sh210\" .\n\n\n\n\nns1:f2ae9446-7631-4bd1-adfc-80f0b2380ac4	\n\n\n?annotation oa:hasBody ?shot ns2:d26613b8-d6c1-4cf9-a2c2-f1d4b627cdae .\n\n?annotation oa:hasBody ?shot\n\nPREFIX linkedtv: <http://data.linkedtv.eu/ontology/>\nPREFIX oa: <http://www.w3.org/ns/oa#>\nPREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>\nPREFIX ma: <http://www.w3.org/ns/ma-ont#>\n\nselect distinct ?shot, ?start, ?end \nwhere {\n	?shot a linkedtv:Shot.\n	?mediafragment a ma:MediaFragment.\n	?annotation oa:hasTarget ?mediafragment. \n	?annotation oa:hasBody ?shot. \n	?mediafragment nsa:temporalStart ?start. \n	?mediafragment nsa:temporalEnd ?end.\n}\norder by ?start\n\n\n\n\n\nPREFIX linkedtv: <http://data.linkedtv.eu/ontology/>\nPREFIX oa: <http://www.w3.org/ns/oa#>\nPREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>\nPREFIX ma: <http://www.w3.org/ns/ma-ont#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX prov: <http://www.w3.org/ns/prov-o/>\n\nselect distinct ?label, ?same, ?entity, ?annotation, ?start, ?end \nwhere {\n	#?shot a linkedtv:Shot.\n	?mediafragment a ma:MediaFragment.\n	?annotation oa:hasTarget ?mediafragment. \n	?annotation oa:hasBody ?entity. \n        ?entity rdfs:label ?label.\n        ?entity owl:sameAs ?same.\n        #?shot rdf:type linkedtv:Entity .\n        #?shot linkedtv:hasRelevance ?relevance .\n	?mediafragment nsa:temporalStart ?start. \n	?mediafragment nsa:temporalEnd ?end.\n        filter(?start > 10) .\n        filter(?end < 15) .\n}\norder by ?start\n\n\nPREFIX prov: <http://www.w3.org/ns/prov-o/>\nselect distinct ?annotation, ?video\nwhere {\n	?annotation prov:wasDerivedFrom ?video.\n}\nlimit 10							\n\n\n\n",
+			"file": "public/css/VideoGallery.css",
 			"settings":
 			{
-				"buffer_size": 2273,
+				"buffer_size": 15484,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "video-client.html",
+			"file": "public/js/assets/fastblur.js",
 			"settings":
 			{
-				"buffer_size": 11918,
+				"buffer_size": 10709,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/kinesis.css",
+			"settings":
+			{
+				"buffer_size": 1413,
 				"line_ending": "Unix"
 			}
 		},
@@ -380,10 +387,22 @@
 	},
 	"file_history":
 	[
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/mediafindercache.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/css/kinesis.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/mediafinderdata.js",
+		"/Users/vukmilicic/Desktop/rbbaktuell_120809.srt",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/fastblur.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/FinalSlide_SemesterProject_FinalVersion.pdf",
+		"/Users/vukmilicic/Documents/Projects/grabtv/css/VideoGallery.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/dbpediacache.js",
+		"/Users/vukmilicic/Documents/Projects/grabtv/public/css/VideoGallery.css",
+		"/Users/vukmilicic/Documents/Projects/grabtv/package.json",
+		"/Users/vukmilicic/Documents/Projects/grabtv/css/kinesis.css",
+		"/Users/vukmilicic/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/vukmilicic/Documents/books/sparql",
 		"/Users/vukmilicic/Documents/Projects/grabtv/css/modern.css",
 		"/Users/vukmilicic/Documents/Projects/grabtv/video-client.html",
 		"/Users/vukmilicic/Documents/Projects/grabtv/js/jquery-1.9.1.min.js",
-		"/Users/vukmilicic/Documents/Projects/grabtv/package.json",
 		"/Users/vukmilicic/Documents/Projects/grabtv/public/css/site.css",
 		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/sparql.js",
 		"/Users/vukmilicic/Documents/Projects/eventmedia_old/js/app.js",
@@ -391,7 +410,6 @@
 		"/Users/vukmilicic/Documents/Projects/grabtv/video-controller.html",
 		"/Users/vukmilicic/Documents/Projects/grabtv/public/js/assets/github.info.js",
 		"/Users/vukmilicic/Documents/Projects/grabtv/js/kinesis-js-sdk.min.js",
-		"/Users/vukmilicic/Documents/Projects/grabtv/css/kinesis.css",
 		"/Users/vukmilicic/Documents/Projects/grabtv/run.bat",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/initmixed.js",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/html/story/elezioni2013.html",
@@ -402,7 +420,6 @@
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/tmp.tsv",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/tmp.csv",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/data/us-income-inequality.csv",
-		"/Users/vukmilicic/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/data_electioni.json",
 		"/Users/vukmilicic/Documents/Projects/linkedtv/projects/mediafinder/ui/js/colorbrewer.js",
 		"/Users/vukmilicic/Documents/Projects/vezba/repeatingtext.html",
@@ -477,13 +494,15 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 77.0
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
+			"",
+			" ",
 			"",
 			"anim1.html",
 			"d3hn.css",
@@ -501,134 +520,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"desc",
-			"Peter Kretschmer",
-			".desc",
-			"video",
-			"content",
-			"container",
-			"amsterd",
-			"template",
-			"delimiter",
-			"id=\"content\"",
-			"sparql_",
-			"sparqlTv",
-			"sparql_location_template",
-			"location_",
-			"sparql",
-			"template",
-			"sparql",
-			"psarql",
-			"pause",
-			"container",
-			"video",
-			"four",
-			".video",
-			"borderline",
-			"endpoint",
-			"prov",
-			"prefix",
-			"chooser",
-			"ns",
-			"$",
-			"_.tem",
-			"nsInverse",
-			"that",
-			"uriToCurie",
-			"tempor",
-			"nsa",
-			"temporalEnd",
-			"#end",
-			"foo",
-			"console",
-			"cons",
-			"foo",
-			"ns",
-			"query",
-			"actionInfoTemplate",
-			"_.tem",
-			"action_info_template",
-			"template",
-			"action_info_template",
-			"action_template",
-			"sparqlTv",
-			"queryType",
-			"sparqlQuery\n",
-			"sparqlq",
-			"player",
-			"isAllReady",
-			"log",
-			"userCount",
-			"isallready",
-			"isallre",
-			"value",
-			"matches",
-			"controlVideo",
-			"matches[1]",
-			"controlVideo",
-			"userCount",
-			"index",
-			"'",
-			"userCount",
-			"canplay",
-			"time_interval",
-			"action",
-			".channel",
-			"tile-",
-			".detail",
-			".list",
-			"isAllReady",
-			"mylis",
-			"mylist",
-			"actions",
-			"#actions",
-			"mylist",
-			"muylist",
-			"bg-color-green",
-			"$_",
-			"countsent",
-			"threshold",
-			"controller",
-			"isAllReadyFlag",
-			"sum",
-			"userco",
-			"userCount",
-			"sum",
-			"threshold",
-			"1d1d1d",
-			"container",
-			"userCount",
-			"bg_c",
-			"img_src",
-			"$(v",
-			"video",
-			"jquery",
-			"video",
-			"img_src",
-			"bg_color",
-			"img_src",
-			"bg_color",
-			"drawScreen",
-			"value",
-			"main_c",
-			"video",
-			"sum",
-			"summary",
-			"				// 	\"isAllReady\" : function() {\n				// 		isAllReadyFlag = value;\n				// 	},",
-			"para",
-			"parseFloat",
-			"parseIn",
-			"command",
-			"commands",
-			"command_t",
-			"action",
-			"container",
-			"template",
-			"bg-color-green",
-			"getLink",
 			"getUrl",
-			"getLink",
-			".src"
+			"getur",
+			"video.sr",
+			"video.",
+			"kinesis",
+			"kinect",
+			"kinec",
+			"inect",
+			"init",
+			"websock",
+			"sock",
+			"websock",
+			"popup",
+			"container",
+			"initmedia",
+			"alert",
+			"initMenu",
+			"#chooser li a ",
+			"chooser",
+			"interactive",
+			"chooser",
+			"#cursor ",
+			"images",
+			"normal",
+			"ip",
+			"back",
+			"popback",
+			"popbac",
+			"thumbs",
+			"thunbs",
+			"initpopup",
+			"popupback",
+			"back",
+			"popup",
+			"initmedia",
+			"popup",
+			"ip",
+			"container",
+			"popup",
+			"timeline",
+			"popup",
+			"mediafinder",
+			"initMedia",
+			"initmedia",
+			"dbpediacache",
+			".js",
+			"mediafinder",
+			"mediaf",
+			"<video",
+			"video",
+			"<video",
+			".js",
+			"track",
+			"ip",
+			"<video",
+			"video",
+			"ip",
+			"mediafi",
+			"ajax",
+			"mediafinder",
+			"back",
+			".back",
+			"mediafind",
+			"initm",
+			"ajax",
+			"popup",
+			"init",
+			"Kurt Kuschela",
+			"_",
+			"mediaf",
+			"initmed",
+			"initen",
+			"removePopup",
+			"renderch",
+			"popup",
+			"initMedia",
+			"popup",
+			"initMedia",
+			"renderMap",
+			"submenu",
+			"_",
+			"map",
+			"renderSmallMap",
+			"zoom",
+			"bars",
+			"foreach",
+			"bar",
+			"video1",
+			"\"grab\"",
+			"fadeout",
+			"div.video1 ",
+			"initVideo",
+			"width",
+			"init",
+			"video1",
+			"video",
+			"initMenu",
+			"initVideo",
+			"fadeout",
+			"width",
+			"chooser",
+			"webkit",
+			"div.detail1",
+			"div.channel1",
+			"chooser",
+			"big_tv",
+			"#video",
+			"video1",
+			"#video",
+			"chooser",
+			"cho",
+			"chooss",
+			"ip",
+			"canvas",
+			"body",
+			"bg_img",
+			"bgimg",
+			"container",
+			"body",
+			"width",
+			"blur",
+			"canvas",
+			"map",
+			"nao",
+			"entities",
+			"bgImg",
+			"bgimg",
+			"canvas"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -662,7 +681,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -670,15 +689,15 @@
 					"file": "public/js/assets/sparqlquery.js",
 					"settings":
 					{
-						"buffer_size": 1994,
+						"buffer_size": 2575,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1068,
-								1068
+								711,
+								711
 							]
 						],
 						"settings":
@@ -688,95 +707,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2.0,
+						"translation.y": 356.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "package.json",
-					"settings":
-					{
-						"buffer_size": 1031,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "css/VideoGallery.css",
-					"settings":
-					{
-						"buffer_size": 6362,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3471,
-								3471
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3316.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "video-controller.html",
-					"settings":
-					{
-						"buffer_size": 6488,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4809,
-								4809
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2449.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "server-html.js",
 					"settings":
 					{
@@ -787,8 +724,8 @@
 						"selection":
 						[
 							[
-								215,
-								215
+								444,
+								444
 							]
 						],
 						"settings":
@@ -802,33 +739,35 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 2,
+					"file": "video-client.html",
 					"settings":
 					{
-						"buffer_size": 23,
+						"buffer_size": 27631,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								23,
-								23
+								13768,
+								13768
 							]
 						],
 						"settings":
 						{
-							"auto_name": "mirjanaduletic@net.hr",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
 						},
-						"translation.x": 0.0,
+						"translation.x": 170.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "server-controller.js",
 					"settings":
 					{
@@ -839,8 +778,8 @@
 						"selection":
 						[
 							[
-								1598,
-								1598
+								1368,
+								1368
 							]
 						],
 						"settings":
@@ -848,25 +787,107 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 565.0,
+						"translation.y": 965.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "css/kinesis.css",
+					"buffer": 4,
+					"file": "video-controller.html",
 					"settings":
 					{
-						"buffer_size": 1372,
+						"buffer_size": 9442,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								60,
-								60
+								6132,
+								6137
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4020.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/css/VideoGallery.css",
+					"settings":
+					{
+						"buffer_size": 15484,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5089,
+								5089
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4446.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/js/assets/fastblur.js",
+					"settings":
+					{
+						"buffer_size": 10709,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3494,
+								3494
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 587.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/css/kinesis.css",
+					"settings":
+					{
+						"buffer_size": 1413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								707,
+								707
 							]
 						],
 						"settings":
@@ -876,61 +897,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"settings":
-					{
-						"buffer_size": 2273,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2120,
-								1179
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 613.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "video-client.html",
-					"settings":
-					{
-						"buffer_size": 11918,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4598,
-								4598
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 278.0,
-						"translation.y": 2026.0,
+						"translation.y": 276.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -938,23 +905,23 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
-					"buffer": 9,
+					"buffer": 2,
 					"file": "video-client.html",
 					"settings":
 					{
-						"buffer_size": 11918,
+						"buffer_size": 27631,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10950,
-								10950
+								499,
+								501
 							]
 						],
 						"settings":
@@ -964,13 +931,13 @@
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5939.0,
+						"translation.y": 8513.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 8,
 					"file": "public/js/assets/github.info.js",
 					"settings":
 					{
@@ -998,7 +965,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 9,
 					"file": "js/jquery-1.9.1.min.js",
 					"settings":
 					{
@@ -1054,7 +1021,7 @@
 		"cols":
 		[
 			0.0,
-			0.488670343137,
+			0.791603150407,
 			1.0
 		],
 		"rows":
@@ -1079,6 +1046,50 @@
 		"selected_items":
 		[
 			[
+				"lkine",
+				"public/css/kinesis.css"
+			],
+			[
+				"media",
+				"public/js/assets/mediafindercache.js"
+			],
+			[
+				".css",
+				"public/css/kinesis.css"
+			],
+			[
+				"blur",
+				"public/js/assets/fastblur.js"
+			],
+			[
+				"server",
+				"server-html.js"
+			],
+			[
+				"videog",
+				"public/css/VideoGallery.css"
+			],
+			[
+				"dbpe",
+				"public/js/assets/dbpediacache.js"
+			],
+			[
+				"kinesis.css",
+				"public/css/kinesis.css"
+			],
+			[
+				"db",
+				"public/js/assets/dbpediacache.js"
+			],
+			[
+				"dbe",
+				"public/js/assets/dbpediacache.js"
+			],
+			[
+				"dbpedia",
+				"public/js/assets/dbpediacache.js"
+			],
+			[
 				"video",
 				"video-client.html"
 			],
@@ -1095,16 +1106,8 @@
 				"js/jquery-1.9.1.min.js"
 			],
 			[
-				"videog",
-				"css/VideoGallery.css"
-			],
-			[
 				"modern.",
 				"css/modern.css"
-			],
-			[
-				".css",
-				"public/css/site.css"
 			],
 			[
 				"kine",

@@ -27,12 +27,13 @@
     <script src="http://www.google.com/jsapi?key=ABQIAAAA9Q8LhJlzspnZqXH-56zU4BQqF5vs-amCUIieOBLhZ3cTA_oZXRQmscVz1cKwL_MCFOqnCKisRu20hQ" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="public/js/assets/sparqlquery.js"></script>
-
+	<script src="public/js/assets/ip.js"></script>
 
 	<script src="public/js/scroller/Raf.js"></script>
 	<script src="public/js/scroller/Animate.js"></script>
 	<script src="public/js/scroller/Scroller.js"></script>
 	<script src="public/js/scroller/render.js"></script>
+
 <!-- 
     <script src="public/js/assets/google-analytics.js"></script>
     <script src="public/js/assets/jquery.mousewheel.min.js"></script>
@@ -440,8 +441,8 @@
 				connection.onerror = function (error) { console.log("error.." + error.toString()); };
 				connection.onmessage = function (message) {  
 
-					// console.log("omnessage: ");
-					// console.log(message.data);
+					console.log("omnessage: ");
+					console.log(message.data);
 
 					var matches = message.data.split(/\s/g),
 						action = matches[0],
@@ -454,7 +455,7 @@
 							"control" : function() {
 
 								var videoNumber = /(\d)\..+$/.exec(value)[1],
-									videoPath = getUrl(videoNumber, { fromWeb: true});
+									videoPath = getUrl(videoNumber, { fromWeb: false });
 
 								console.log(value)
 
@@ -660,11 +661,10 @@
 				width = 804,
 				hasPlayed = false,
 				duration,
-				connection,
+				connection;
 
-				ip 		= "172.24.10.61";
-				// ip 		= "192.168.1.11";
-				// ip 		= "10.42.0.11";
+				// ip = "localhost";
+				// ip 	= "172.24.5.91";
 
 
 				window.videoData = {};

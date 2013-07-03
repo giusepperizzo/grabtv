@@ -17,36 +17,22 @@
 
 /* cursor styles starts */
 #cursor {
-  display: block !important;
-  position: fixed;
-  left: -90px;
-  top: -90px;
-  width: 90px;
-  height: 90px;
-  pointer-events:none;
-  background:url(../images/hand.png) no-repeat center center;
-  z-index: 10000000000;
-}
-
-
-/*#cursor{
+  position: absolute;
+  left: -200px;
   top: -200px;
   width: 90px;
   height: 90px;
-  left: -200px;
-  background:url(../images/hand.png) no-repeat center center;
-  z-index: 1140;
-  position: fixed;  
   pointer-events:none;
-}*/
-
-
+  background:url(../images/hand.png) no-repeat center center;
+  z-index: 2;
+}
 /* cursor styles ends */
 
 /* background styles starts */
-/*body{
-  background:url(http://cdn.kinesis.io/bg.png) repeat left top;
-}*/
+body{
+  /*background:url(http://cdn.kinesis.io/bg.png) repeat left top;*/
+  background: green;
+}
 /* background styles ends */
 
 .message {
@@ -71,9 +57,10 @@
   cursor: pointer;
   margin: -8px 10px;
   text-indent: -9999px;
-  background: url(http://cdn.kinesis.io/closeBtn.png) no-repeat scroll right top transparent;
+  /*background: url(http://cdn.kinesis.io/closeBtn.png) no-repeat scroll right top transparent;*/
+  background: red;
 }
 
 #depthImage {
-  display:none;
+	display:none;
 }

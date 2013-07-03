@@ -1,11 +1,11 @@
 
 var sys = require("sys"),
 	express = require("express"),
-	app = express.createServer();
+	app = express();
 
 app.listen(8000);
 app.use(express.logger("dev"));
-app.use(express.static(__dirname ));
+app.use(express.static(__dirname));
 app.use(express.static("socket.io/lib"));
 
 app.get("/video-controller.html", function (req, res) {

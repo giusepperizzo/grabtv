@@ -1,38 +1,40 @@
-# Welcome
+# Grab your Favorite Video Fragment: Interact with a Kinect and Discover Enriched Hypervideo 
 
-This is a semester project: Grab your favourite Tv and share it. This project is supervised by Assistant Prof. Raphael Troncy (Eurecom) and Ph.D students.
+In this demonstration, we propose an approach for enriching the user experience when watching television using a second screen device. The user can control the video program being watched using a Kinect and can grab, at any time, a fragment from this video. Then, we perform named entity recognition on the subtitles of this video fragment in order to spot relevant concepts. Entities are used to gather information from the Linked Open Data cloud and to discover what the vox populi says about this program. This generates media galleries that enrich the seed video fragments grabbed by the user who can then navigate this enriched content on a second screen device.
 
-### Version model
-0.0.0.1
+Project by LinkedTV & Eurecom
 
-1) HTML rendering source server
+Demo video: [http://www.youtube.com/watch?v=4mSC685AG7k]()
 
-2) Broadcast controller
+## Architecture
 
-3) Client(s)
+1. HTML rendering source server
 
-4) Websocket server
+2. Broadcast controller
+
+3. Client(s)
+
+4. Websocket server
 
 
-# Step to run
-## Preliminary step
-1/ Install and run NodeJS 
+## Step to run
+
+### Preliminary steps
+1. Install and run NodeJS 
 NodeJS: http://nodejs.org/
-2/ Install Kinesis IO
+2. Install Kinesis IO
 Kinesis.IO : http://kinesis.io 
-3/ Connect the Kinect device to your computer and be sure it works probaly.
+3. Connect the Kinect device to your computer and be sure it works probaly.
 
-## Run 
-1/ Start server-controller.js
-2/ Start server-html.js
-3/ Open web page video-controller.html firstly at port 8000
-4/ Open web page video-client.html secondly at port 8000
+### Run 
+1. Start server-controller.js
+2. Start server-html.js
+3. Open web page video-controller.html firstly at port 80
+4. Open web page video-client.html secondly at port 80
 
-## Gesture
-Hold your hand on the button --> Click video
-Swipe left : Play video
-Open hand widely and give forward such as the sign of pause: pause video
-
-## Special thanks
-
-Assistant Prof. Raphael Troncy, Ph.D. student Jose Luis Redondo Garcia and Ph.D. student Giuseppe Rizzo
+### Gesture
+- Hold your hand on the thumbnail --> Click video
+- Swipe down : Stop (grab) the video
+- Swipe up: Play the video
+- Swipe left: forward
+- Swipe right: backward
